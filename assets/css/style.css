@@ -1,3 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+}
+
+p {
+    display: inline-flex;
+    margin-right: 10px;
+}
+
+.container {
+    padding: 10px;
+    background: gray;
+}
+
+.div-paragraph {
+    margin: 5% 25%;
+    background: rgb(255, 242, 219);
+}
+
+.div-input {
+    display: grid;
+    place-items: center;
+}
+
+.input-palavra {
+    font-size: 1.5em;
+    width: 35%;
+    height: 55px;
+}
+
 .acerto {
-    color: green;
+    color: rgb(13, 251, 13);
+}
+
+.erro {
+    color: red;
 }
