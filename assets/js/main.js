@@ -3,26 +3,44 @@ const botao = document.querySelector('.btn-verificar')
 const pFrase = document.querySelector('.p-frase')
 const frase = pFrase.textContent
 
-const palavraFrase = frase.split(' ')
+let palavraFrase = frase.split(' ')
+let acertos = 0
+let erros = 0
 
-document.addEventListener('click', function(e) {
-    const evento = e.target
-
-    if (evento.classList.contains('btn-verificar')) {
+document.addEventListener('keypress', function(e) {
+    if (e.key === ' ') {
         checkWord()
+        checkRes()
         clsInput()
     }
 })
 
-function checkWord() { 
+function checkWord() {
+   inputPalavra.value = inputPalavra.value.trim()
+    
     for (let i = 0; i < palavraFrase.length; i++) {
         if (inputPalavra.value === palavraFrase[i]) {
-            palavraFrase.splice(0, 1)
-            return console.log('certo')
-
+            acertos++
+            palavraFrase.splice(i, 1)  
+            
+            console.log('certo')
+            break
+        
         } else {
-            return console.log('errado')
-        }
+            console.log('errou')
+            erros++
+        } 
+    }
+}
+
+function checkRes() {
+    if (palavraFrase.length == 0) {
+        palavraFrase = frase.split(' ')
+
+        alert(`voce finalizou o teste! Acertos: ${acertos} Errados: ${erros}`)
+        
+        acertos = 0
+        erros = 0
     }
 }
 
