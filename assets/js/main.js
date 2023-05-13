@@ -60,10 +60,11 @@ function checkWord() {
 }
 
 function changeColorWord(resultado) {
+    const maximo = Number.MAX_VALUE
     const span = document.querySelectorAll('span')
 
     if (resultado === 1) {
-        for (let i = 0; i < 10000; i++) {
+        for (let i = 0; i < maximo; i++) {
             if (!span[i].classList.contains('acerto')) {
                 span[i].classList.remove('erro')
                 span[i].classList.add('acerto')
@@ -75,7 +76,7 @@ function changeColorWord(resultado) {
     }
 
     if (resultado === 2) {
-        for (let i = index; i < 1000; i++) {
+        for (let i = index; i < maximo; i++) {
             if (span[i].classList.contains('erro')) break
             if (!span[i].classList.contains('erro')) {
                 span[i].classList.add('erro')
@@ -86,7 +87,20 @@ function changeColorWord(resultado) {
     }
 }
 
+function resetClasses() {
+    const span = document.querySelectorAll('span')
 
+    for (let i = 0; i < palavraFrase.length; i++) {
+        try {
+            if (span[i].classList.contains('acerto')) {
+                span[i].classList.remove('acerto')
+            }
+        
+        } catch(e) {
+            console.log(e)
+        }
+    }
+}
 
 function checkRes() {
     if (palavraFrase.length == 0) {
@@ -94,6 +108,7 @@ function checkRes() {
 
         alert(`voce finalizou o teste! Acertos: ${acertos} Erros: ${erros}`)
 
+        resetClasses()
         acertos = 0
         erros = 0
     }
