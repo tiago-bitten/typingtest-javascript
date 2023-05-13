@@ -13,10 +13,17 @@ let palavraFrase = frasePrompt.split(' ')
 
 document.addEventListener('keypress', function (e) {
     if (e.key === ' ') {
-        checkWord()
-        changeColorWord()
-        checkRes()
-        clsInput()
+        try {
+            checkWord()
+            changeColorWord()
+            checkRes()
+
+        } catch (e) {
+            throw new Error()
+
+        } finally {
+            clsInput()
+        }
     }
 })
 
@@ -43,6 +50,7 @@ function checkWord() {
     inputPalavra.value = inputPalavra.value.trim()
 
     for (let i in palavraFrase) {
+        if (inputPalavra.value === '') break
         if (inputPalavra.value === palavraFrase[i]) {
             changeColorWord(1)
             acertos++
@@ -95,8 +103,8 @@ function resetClasses() {
             if (span[i].classList.contains('acerto')) {
                 span[i].classList.remove('acerto')
             }
-        
-        } catch(e) {
+
+        } catch (e) {
             console.log(e)
         }
     }
@@ -105,13 +113,26 @@ function resetClasses() {
 function checkRes() {
     if (palavraFrase.length == 0) {
         palavraFrase = frasePrompt.split(' ')
-
-        alert(`voce finalizou o teste! Acertos: ${acertos} Erros: ${erros}`)
-
+        getAcurency()
         resetClasses()
+    }
+}
+
+function getAcurency() {
+    if (acertos > erros) {
+        const acurency = ((acertos - erros) / palavraFrase.length) * 100
+        alert(`Acertos: ${acertos} Erros: ${erros} Acc: ${acurency.toFixed(2)}`)
+        acertos = 0
+        erros = 0
+    
+    } else {
+        acertos = 0.1
+        const acurency = (acertos / palavraFrase.length) * 100
+        alert(`Acertos: ${acertos + 0.9} Erros: ${erros} Acc: ${acurency.toFixed(2)}`)
         acertos = 0
         erros = 0
     }
+
 }
 
 function clsInput() {
