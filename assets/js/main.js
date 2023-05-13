@@ -20,22 +20,22 @@ document.addEventListener('keypress', function (e) {
     }
 })
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     createLabel()
     inputPalavra.focus()
 })
 
-function createParagraph() {
-    const p = document.createElement('p')
-    return p
+function createSpan() {
+    const span = document.createElement('span')
+    return span
 }
 
 function createLabel() {
     for (let i in palavraFrase) {
-        const p = createParagraph()
-        p.classList.add(`p-${i}`)
-        p.textContent = palavraFrase[i]
-        divParagrafo.appendChild(p)
+        const span = createSpan()
+        span.classList.add(`span-${i}`)
+        span.textContent = palavraFrase[i]
+        divParagrafo.appendChild(span)
     }
 }
 
@@ -60,30 +60,30 @@ function checkWord() {
 }
 
 function changeColorWord(resultado) {
-    const p = document.querySelectorAll('p')
+    const span = document.querySelectorAll('span')
 
     if (resultado === 1) {
         for (let i = 0; i < 10000; i++) {
-            if (!p[i].classList.contains('acerto')) {
-                p[i].classList.remove('erro')
-                p[i].classList.add('acerto')
-                console.log(p[i])
-                index = i
-                break
-            }
-        }
-
-    } else if (resultado === 2) {
-        for (let i = index + 1; i < 10000; i++) {
-            if (!p[i].classList.contains('erro')) {
-                p[i].classList.add('erro')
-                console.log(p[i])
+            if (!span[i].classList.contains('acerto')) {
+                span[i].classList.remove('erro')
+                span[i].classList.add('acerto')
+                console.log(span[i])
+                index = i + 1
                 break
             }
         }
     }
 
-
+    if (resultado === 2) {
+        for (let i = index; i < 1000; i++) {
+            if (span[i].classList.contains('erro')) break
+            if (!span[i].classList.contains('erro')) {
+                span[i].classList.add('erro')
+                console.log(span[i])
+                break
+            }
+        }
+    }
 }
 
 
