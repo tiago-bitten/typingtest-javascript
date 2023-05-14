@@ -27,7 +27,11 @@ document.addEventListener('keypress', function (e) {
     }
 })
 
-window.addEventListener('load', function () {
+window.addEventListener('click', function() {
+    inputPalavra.focus()
+})
+
+window.addEventListener('load', function() {
     createLabel()
     inputPalavra.focus()
 })

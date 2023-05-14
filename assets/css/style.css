@@ -1,41 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 
+:root {
+    --primary-color: rgb(35, 35, 35);
+    --secondary-color: rgb(210, 210, 210);
+    --tertiary-color: rgb(66, 66, 66);
+}
 
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 2em;
+    font-size: 1.7em;
+    font-weight: bolder;
+    color: var(--secondary-color);
+    background: var(--primary-color);
 }
 
 span {
     display: inline-flex;
-    margin-right: 10px;
+    margin: 5px;
 }
 
 .container {
     padding: 10px;
-    background: gray;
+    background: var(--primary-color);
 }
 
 .div-paragraph {
-    margin: 5% 25%;
-    background: rgb(255, 242, 219);
+    margin: 5% 15% 0 15%;
+    padding: 20px;
+    border-radius: 20px;
+    
 }
 
 .div-input {
     display: grid;
     place-items: center;
+    caret-color: transparent;
 }
 
 .input-palavra {
-    font-size: 1.5em;
+    background-color: var(--tertiary-color);
+    outline: none;
+    border: none;
+    cursor: default;
+    font-size: 1.2em;
+    color: var(--secondary-color);
+    padding: 0 10px;
     width: 35%;
     height: 55px;
+    border-radius: 20px;
 }
 
 .acerto {
-    color: rgb(13, 251, 13);
+    color: rgb(109, 153, 211);
 }
 
 .erro {
-    color: red;
+    background: rgb(213, 76, 76);
+    border-radius: 5px;
 }
