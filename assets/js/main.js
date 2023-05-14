@@ -3,28 +3,33 @@ const inputPalavra = document.querySelector('.input-palavra')
 const botao = document.querySelector('.btn-verificar')
 const divParagrafo = document.querySelector('.div-paragraph')
 
-let contadorIniciado = false
-let acertos = 0
-let erros = 0
-let index = 0
-let segundos = 0
-let contador
+// Variaveis presentes no metodo 'counter()'
+let contadorIniciado = false        // Variavel para saber se o setInterval já foi iniciado
+let segundos        // Variavel que adiciona os segundos
 
-const frasePrompt = window.prompt('Escolha uma frase')
+// Variaveis presentes nos metodos 'checkWord()' e 'getAcurency()'
+let acertos = 0     // Contas os acertos
+let erros = 0       // Conta os erros
 
-let palavraFrase = frasePrompt.split(' ')
+// Variavel presente no metodo 'changeColorWord(resultado)'
+let index = 0       // Recebe o indice do 'for' caso 'resultado' receber '1'
 
-document.addEventListener('keypress', function (e) {
-    counter()
+const frasePrompt = window.prompt('Escolha uma frase')      // Recebe a frase
 
-    if (e.key === ' ') {
+let palavraFrase = frasePrompt.split(' ')       // Separa cada palavra da frase em um indice no array
+
+// Evento das teclas pressionadas no documento
+document.addEventListener('keypress', function(e) {
+    counter()       // Quando qualquer tecla pressionada o contator de tempo inicia
+
+    if (e.key === ' ') {        // Se a tecla espaço pressionada executa os metodos
         try {
             checkWord()
             changeColorWord()
             checkRes()
 
-        } catch (e) {
-            console.log(e)
+        } catch(e) {
+            alert(e)        // Caso ocorra alguma exceção em um dos metodos o alert informa
 
         } finally {
             clsInput()
@@ -32,22 +37,29 @@ document.addEventListener('keypress', function (e) {
     }
 })
 
-window.addEventListener('click', function () {
-    inputPalavra.focus()
+// Evento dos cliques do ponteiro no documento
+document.addEventListener('click', function (e) {
+    inputPalavra.focus()        // Quando ocorre o evento do clique em qualquer lugar do documento o ponteiro é automaticamente redirecionado para o 'input'
 })
 
+// Evento de carregamento da janela
 window.addEventListener('load', function () {
-    createLabel()
-    inputPalavra.focus()
+    createLabel()       // Quando a pagina é carregada executa o metodo 'createLabel()'
+    inputPalavra.focus()        // Quando a pagina é carregada o ponteiro é redirecionado para o 'input'
 })
 
+// Metodo para contar tempo do teste
 function counter() {
-    if (!contadorIniciado) {
-        contadorIniciado = true
-        contador = setInterval(function () {
+    if (!contadorIniciado) {        // 'contadorIniciado' é usado para saber se o metodo já foi exectuado antes
+        contadorIniciado = true     // Se for a primeira vez do metodo sendo executado a variavel booleana 'contadorIniciado' recebe 'true'
+        
+        segundos = 0        // Variavel iniciada com o valor '0'
+
+        // Variavel contador recebe o metodo 'setInterval()' que é executado a cada 1 segundo
+        let contador = setInterval(function () {
             segundos++
-            if (palavraFrase.length === 0) {
-                setTimeout(function () {
+            if (palavraFrase.length === 0) {        // Se o teste tiver terminado é chamado o metodo 'setTimeout()' que é executado instantaneamente
+                setTimeout(function () {        // O metodo 'setTimeout()' chama o metodo 'clearInterval()' que recebe como argumento o 'contador'
                     clearInterval(contador)
                     console.log(segundos)
                 }, 0)
@@ -56,11 +68,13 @@ function counter() {
     }
 }
 
+// Metodo para criar <span>
 function createSpan() {
     const span = document.createElement('span')
     return span
 }
 
+// Metodo que adiciona cada indice do array 'palavraFrase' em um <span>
 function createLabel() {
     for (let i in palavraFrase) {
         const span = createSpan()
@@ -70,75 +84,87 @@ function createLabel() {
     }
 }
 
+// Metodo para verificar se a palavra digita esta correta
 function checkWord() {
-    inputPalavra.value = inputPalavra.value.trim()
+    inputPalavra.value = inputPalavra.value.trim()      // Retira os espaços vazios do input
 
-    for (let i in palavraFrase) {
-        if (inputPalavra.value === '') break
-        if (inputPalavra.value === palavraFrase[i]) {
+    for (let i in palavraFrase) {       // 'for' que percorre todos os indices do array 'palavraFrase'
+        if (inputPalavra.value === '') break        // Se o valor do input for um espaço vazio a operação é interrompida
+        if (inputPalavra.value === palavraFrase[i]) {       // Verifica se o valor do input é o mesmo do indice do array
             changeColorWord(1)
-            acertos++
-            palavraFrase.splice(i, 1)
-            console.log('certo')
+            acertos++       // Adiciona +1 a 'acertos'
+            palavraFrase.splice(i, 1)       // Remove a palavra do indice atual do array 'palavraFrase'
             break
 
         } else {
             changeColorWord(2)
-            erros++
-            console.log('errou')
+            erros++     // Adiciona +1 a 'erros'
             break
         }
     }
 }
 
+// Metodo para mudar a cor das palavras no texto
 function changeColorWord(resultado) {
-    const maximo = Number.MAX_VALUE
-    const span = document.querySelectorAll('span')
+    const tamanho = frasePrompt.split(' ').length       // 'tamanho' recebe a quantidade de palavras no texto
+    const span = document.querySelectorAll('span')      // 'span' recebe uma NodeList contendo todos os'<span>'
 
-    if (resultado === 1) {
-        for (let i = 0; i < maximo; i++) {
+    if (resultado === 1) {      // 1 representa 'true'
+        for (let i = 0; i < tamanho; i++) {
             if (!span[i].classList.contains('acerto')) {
-                span[i].classList.remove('erro')
-                span[i].classList.add('acerto')
-                index = i + 1
+                if (span[i].classList.contains('erro')) {      
+                    span[i].classList.remove('erro')        // Se a palavra do indice atual contem a classe 'erro' a classe 'erro' é removida
+                }
+                span[i].classList.add('acerto')     // Se a palavra do indice não contem a classe 'acerto' então é adicionada a classe 'acerto'
+                index = i + 1       // Variavel index recebe o indice atual
                 break
             }
         }
     }
 
-    if (resultado === 2) {
-        for (let i = index; i < maximo; i++) {
-            if (span[i].classList.contains('erro')) break
+    if (resultado === 2) {      // 2 representa 'false'
+        for (let i = index; i < tamanho; i++) {
+            if (span[i].classList.contains('erro')) break       // Se a palavra do indice atual ja contem a classe 'erro' a operação é interrompida
             if (!span[i].classList.contains('erro')) {
-                span[i].classList.add('erro')
+                span[i].classList.add('erro')       // Se a palavra do indice atual não contem classe 'erro' é adicionada a classe 'erro'
                 break
             }
         }
     }
 }
 
+// Metodo para retirar todas as classes do texto
 function resetClasses() {
-    const span = document.querySelectorAll('span')
-
-    for (let i = 0; i < palavraFrase.length; i++) {
+    const tamanho = frasePrompt.split(' ').length       // 'tamanho' recebe a quantidade de palavras no texto
+    const span = document.querySelectorAll('span')      // 'span' recebe uma NodeList contendo todos os '<span>'
+    
+    for (let i = 0; i < tamanho; i++) {     // Percorre o texto removendo todas as classes 'acerto'
         if (span[i].classList.contains('acerto')) {
             span[i].classList.remove('acerto')
 
         } else {
-            throw new Error('Erro ao resetar classes')
+            throw new Error('Erro ao resetar classes')      // Se ocorrer algum erro lança uma exceção
         }
     }
 }
 
+// Metodo para checar se o teste terminou
 function checkRes() {
-    if (palavraFrase.length === 0) {
+    if (palavraFrase.length === 0) {        // Se o array chegar a tamanho 0 é porque o teste terminou
         //palavraFrase = frasePrompt.split(' ')
         getAcurency()
         resetClasses()
     }
 }
 
+// Metodo para fazer a pontuação
 function getAcurency() {
+
+    /* ESTE METODO ESTA DESATUALIZADO
+       ESTE METODO ESTA DESATUALIZADO
+       ESTE METODO ESTA DESATUALIZADO
+       ESTE METODO ESTA DESATUALIZADO */
+
     if (acertos > erros) {
         const acurency = ((acertos - erros) / palavraFrase.length) * 100
         alert(`Acertos: ${acertos} Erros: ${erros} Acc: ${acurency.toFixed(2)}`)
@@ -155,6 +181,7 @@ function getAcurency() {
 
 }
 
+// Metodo para limpar o input
 function clsInput() {
     inputPalavra.value = ''
 }
