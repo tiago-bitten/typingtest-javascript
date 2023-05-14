@@ -3,15 +3,20 @@ const inputPalavra = document.querySelector('.input-palavra')
 const botao = document.querySelector('.btn-verificar')
 const divParagrafo = document.querySelector('.div-paragraph')
 
+let contadorIniciado = false
 let acertos = 0
 let erros = 0
 let index = 0
+let segundos = 0
+let contador
 
 const frasePrompt = window.prompt('Escolha uma frase')
 
 let palavraFrase = frasePrompt.split(' ')
 
 document.addEventListener('keypress', function (e) {
+    counter()
+
     if (e.key === ' ') {
         try {
             checkWord()
@@ -19,7 +24,7 @@ document.addEventListener('keypress', function (e) {
             checkRes()
 
         } catch (e) {
-            throw new Error()
+            console.log(e)
 
         } finally {
             clsInput()
@@ -27,14 +32,29 @@ document.addEventListener('keypress', function (e) {
     }
 })
 
-window.addEventListener('click', function() {
+window.addEventListener('click', function () {
     inputPalavra.focus()
 })
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     createLabel()
     inputPalavra.focus()
 })
+
+function counter() {
+    if (!contadorIniciado) {
+        contadorIniciado = true
+        contador = setInterval(function () {
+            segundos++
+            if (palavraFrase.length === 0) {
+                setTimeout(function () {
+                    clearInterval(contador)
+                    console.log(segundos)
+                }, 0)
+            }
+        }, 1000)
+    }
+}
 
 function createSpan() {
     const span = document.createElement('span')
@@ -80,7 +100,6 @@ function changeColorWord(resultado) {
             if (!span[i].classList.contains('acerto')) {
                 span[i].classList.remove('erro')
                 span[i].classList.add('acerto')
-                console.log(span[i])
                 index = i + 1
                 break
             }
@@ -92,7 +111,6 @@ function changeColorWord(resultado) {
             if (span[i].classList.contains('erro')) break
             if (!span[i].classList.contains('erro')) {
                 span[i].classList.add('erro')
-                console.log(span[i])
                 break
             }
         }
@@ -103,20 +121,18 @@ function resetClasses() {
     const span = document.querySelectorAll('span')
 
     for (let i = 0; i < palavraFrase.length; i++) {
-        try {
-            if (span[i].classList.contains('acerto')) {
-                span[i].classList.remove('acerto')
-            }
+        if (span[i].classList.contains('acerto')) {
+            span[i].classList.remove('acerto')
 
-        } catch (e) {
-            console.log(e)
+        } else {
+            throw new Error('Erro ao resetar classes')
         }
     }
 }
 
 function checkRes() {
-    if (palavraFrase.length == 0) {
-        palavraFrase = frasePrompt.split(' ')
+    if (palavraFrase.length === 0) {
+        //palavraFrase = frasePrompt.split(' ')
         getAcurency()
         resetClasses()
     }
@@ -128,7 +144,7 @@ function getAcurency() {
         alert(`Acertos: ${acertos} Erros: ${erros} Acc: ${acurency.toFixed(2)}`)
         acertos = 0
         erros = 0
-    
+
     } else {
         acertos = 0.1
         const acurency = (acertos / palavraFrase.length) * 100
