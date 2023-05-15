@@ -2,6 +2,7 @@ const container = document.querySelector('.container')
 const inputPalavra = document.querySelector('.input-palavra')
 const botao = document.querySelector('.btn-verificar')
 const divParagrafo = document.querySelector('.div-paragraph')
+const divResultado = document.querySelector('.resultado')
 
 // Variaveis presentes no metodo 'counter()'
 let contadorIniciado = false        // Variavel para saber se o setInterval já foi iniciado
@@ -44,7 +45,7 @@ document.addEventListener('click', function (e) {
 
 // Evento de carregamento da janela
 window.addEventListener('load', function () {
-    createLabel()       // Quando a pagina é carregada executa o metodo 'createLabel()'
+    createTextTest()       // Quando a pagina é carregada executa o metodo 'createLabel()'
     inputPalavra.focus()        // Quando a pagina é carregada o ponteiro é redirecionado para o 'input'
 })
 
@@ -75,7 +76,7 @@ function createSpan() {
 }
 
 // Metodo que adiciona cada indice do array 'palavraFrase' em um <span>
-function createLabel() {
+function createTextTest() {
     for (let i in palavraFrase) {
         const span = createSpan()
         span.classList.add(`span-${i}`)
@@ -152,36 +153,34 @@ function resetClasses() {
 function checkRes() {
     if (palavraFrase.length === 0) {        // Se o array chegar a tamanho 0 é porque o teste terminou
         //palavraFrase = frasePrompt.split(' ')
-        getAcurency()
+        showResult()
         resetClasses()
     }
-}
-
-// Metodo para fazer a pontuação
-function getAcurency() {
-
-    /* ESTE METODO ESTA DESATUALIZADO
-       ESTE METODO ESTA DESATUALIZADO
-       ESTE METODO ESTA DESATUALIZADO
-       ESTE METODO ESTA DESATUALIZADO */
-
-    if (acertos > erros) {
-        const acurency = ((acertos - erros) / palavraFrase.length) * 100
-        alert(`Acertos: ${acertos} Erros: ${erros} Acc: ${acurency.toFixed(2)}`)
-        acertos = 0
-        erros = 0
-
-    } else {
-        acertos = 0.1
-        const acurency = (acertos / palavraFrase.length) * 100
-        alert(`Acertos: ${acertos + 0.9} Erros: ${erros} Acc: ${acurency.toFixed(2)}`)
-        acertos = 0
-        erros = 0
-    }
-
 }
 
 // Metodo para limpar o input
 function clsInput() {
     inputPalavra.value = ''
 }
+
+// Metodo para calcular a acuracia
+function calcAcurency() {
+    const acc = ((acertos - erros) / frasePrompt.split(' ').length) * 100
+    return acc.toFixed(2)
+}
+
+// Metodo para calcular palavras digitadas por minuto
+function calcWpm() {
+    const wpm = (frasePrompt.split(' ').length / segundos) * 60
+    return wpm.toFixed(0)
+}
+
+// Metodo que mostra as pontuações
+function showResult() {
+    const acc = calcAcurency()
+    const wpm = calcWpm()
+    const span = createSpan()
+    
+    
+}
+

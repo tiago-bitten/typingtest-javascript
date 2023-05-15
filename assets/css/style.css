@@ -49,6 +49,12 @@ span {
     border-radius: 20px;
 }
 
+.div-wpm {
+    display: grid;
+    justify-content: center;
+
+}
+
 .acerto {
     color: rgb(109, 153, 211);
 }
