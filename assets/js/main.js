@@ -1,6 +1,7 @@
+import { Palavras } from "./palavras.js"
+
 const container = document.querySelector('.container')
 const inputPalavra = document.querySelector('.input-palavra')
-const botao = document.querySelector('.btn-verificar')
 const divParagrafo = document.querySelector('.div-paragraph')
 const divResultado = document.querySelector('.resultado')
 
@@ -15,9 +16,9 @@ let erros = 0       // Conta os erros
 // Variavel presente no metodo 'changeColorWord(resultado)'
 let index = 0       // Recebe o indice do 'for' caso 'resultado' receber '1'
 
-const frasePrompt = "de suas requisições e receber notificações quando as mesmas forem aprovadas ou rejeitadas. Esses usuários podem ter"      // Recebe a frase
-
-let palavraFrase = frasePrompt.split(' ')       // Separa cada palavra da frase em um indice no array
+const frase = new Palavras()
+const palavrasRandomizadas = frase.randomizarPalavras()
+console.log(palavrasRandomizadas)
 
 // Evento das teclas pressionadas no documento
 document.addEventListener('keypress', function(e) {
