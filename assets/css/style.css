@@ -77,6 +77,17 @@ span {
     margin-top: 25px;
 }
 
+.btn-reset {
+    padding: 15px;
+    font-size: 1em;
+    font-weight: 500;
+    background: rgb(109, 153, 211);
+    color: white;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+}
+
 
 /* ACERTOS E ERROS */
 .acerto {

@@ -32,7 +32,16 @@ document.addEventListener('keypress', function(e) {
         try {
             checkWord()
             changeColorWord()
-            checkRes()
+            
+            if (checkRes()) {
+                printWpm()
+                printAcc()
+                printHits()
+                printMistakes()
+                //resetClasses()
+                removeInput()
+                addBtn()
+            }
 
         } catch(e) {
             console.log(e.message)        // Caso ocorra alguma exceção em um dos metodos o alert informa
@@ -50,9 +59,13 @@ document.addEventListener('click', function (e) {
 })
 
 // Evento de carregamento da janela
-window.addEventListener('load', function () {
+window.addEventListener('load', function() {
     createTextTest()       // Quando a pagina é carregada executa o metodo 'createLabel()'
     inputPalavra.focus()        // Quando a pagina é carregada o ponteiro é redirecionado para o 'input'
+})
+
+divBtnReset.addEventListener('click', function() {
+    location.reload()
 })
 
 // Metodo para contar tempo do teste
@@ -163,12 +176,10 @@ function resetClasses() {
 // Metodo para checar se o teste terminou
 function checkRes() {
     if (palavrasRandomizadas.length === 0) {        // Se o array chegar a tamanho 0 é porque o teste terminou
-        printWpm()
-        printAcc()
-        printHits()
-        printMistakes()
-        resetClasses()
-        restartTest()
+        return true
+    
+    } else {
+        return false
     }
 }
 
@@ -232,10 +243,16 @@ function printMistakes() {
     divResults.appendChild(span)
 }
 
-function restartTest() {
+// Adiciona o botão no documento
+function addBtn() {
     const btn = createButton()
     btn.classList.add('btn-reset')
     btn.textContent = 'Resetar'
 
     divBtnReset.appendChild(btn)
+}
+
+// Remove o input de digitação
+function removeInput() {
+    inputPalavra.remove()
 }
