@@ -3,7 +3,9 @@ import { Palavras } from "./palavras.js"
 const container = document.querySelector('.container')
 const inputPalavra = document.querySelector('.input-palavra')
 const divParagrafo = document.querySelector('.div-paragraph')
-const divResultado = document.querySelector('.resultado')
+const divWpm = document.querySelector('.div-wpm')
+const divResults = document.querySelector('.div-results')
+const divBtnReset = document.querySelector('.div-btn-reset')
 
 // Variaveis presentes no metodo 'counter()'
 let contadorIniciado = false        // Variavel para saber se o setInterval já foi iniciado
@@ -16,8 +18,10 @@ let erros = 0       // Conta os erros
 // Variavel presente no metodo 'changeColorWord(resultado)'
 let index = 0       // Recebe o indice do 'for' caso 'resultado' receber '1'
 
+const tamanhoTeste = window.prompt('Quantas palavras você deseja no teste?')        // Quantidade de palavras
+
 const frase = new Palavras()        // Criando uma nova instancia de 'Palavras'
-const palavrasRandomizadas = frase.randomizarPalavras()     // Chamando o metodo 'randomizarPalavras()' a partir da instancia 'frase'
+const palavrasRandomizadas = frase.randomizarPalavras(tamanhoTeste)     // Chamando o metodo 'randomizarPalavras()' a partir da instancia 'frase'
 const lengthPalavrasRandomizadas = palavrasRandomizadas.slice().length      // Atribuindo o tamanho do array a 'lengthPalavrasRandomizadas'
 
 // Evento das teclas pressionadas no documento
@@ -31,7 +35,8 @@ document.addEventListener('keypress', function(e) {
             checkRes()
 
         } catch(e) {
-            alert(e)        // Caso ocorra alguma exceção em um dos metodos o alert informa
+            console.log(e.message)        // Caso ocorra alguma exceção em um dos metodos o alert informa
+            console.log(e.stack)
 
         } finally {
             clsInput()
@@ -60,12 +65,10 @@ function counter() {
         // Variavel contador recebe o metodo 'setInterval()' que é executado a cada 1 segundo
         let contador = setInterval(function () {
             segundos++
-            console.log(segundos)
             if (palavrasRandomizadas.length === 0) {        // Se o teste tiver terminado é chamado o metodo 'setTimeout()' que é executado instantaneamente
-                setTimeout(function () {        // O metodo 'setTimeout()' chama o metodo 'clearInterval()' que recebe como argumento o 'contador'
+                setTimeout(() => {        // O metodo 'setTimeout()' chama o metodo 'clearInterval()' que recebe como argumento o 'contador'
                     clearInterval(contador)
-                    segundos = segundos / 100
-                    console.log(segundos)
+                    // segundos = segundos / 100
                 }, 0)
             }
         }, 10)
@@ -76,6 +79,11 @@ function counter() {
 function createSpan() {
     const span = document.createElement('span')
     return span
+}
+
+function createButton() {
+    const btn = document.createElement('button')
+    return btn
 }
 
 // Metodo que adiciona cada indice do array 'palavrasRandomizadas' em um <span>
@@ -155,9 +163,12 @@ function resetClasses() {
 // Metodo para checar se o teste terminou
 function checkRes() {
     if (palavrasRandomizadas.length === 0) {        // Se o array chegar a tamanho 0 é porque o teste terminou
-        //palavraFrase = frasePrompt.split(' ')
-        showResult()
+        printWpm()
+        printAcc()
+        printHits()
+        printMistakes()
         resetClasses()
+        restartTest()
     }
 }
 
@@ -173,19 +184,58 @@ function calcAcurency() {
     return Math.round(acc)
 }
 
+// Imprime o resultado do metodo 'calcAcurency()'
+function printAcc() {
+    const acc = calcAcurency()
+    const span = createSpan()
+
+    span.textContent = `Acuracia: ${acc}%`
+    divResults.appendChild(span)
+}
+
 // Metodo para calcular palavras digitadas por minuto
 function calcWpm() {
-    const palavra = lengthPalavrasRandomizadas      // palavra recebe a quantiade total de palavras
-    const minuto = segundos / 60        // minutos recebe segundos divido por 60
-    const wpm = palavra / minuto     // Obtendo o WPM
-    return Math.round(wpm)
-}
+    const palavra = lengthPalavrasRandomizadas; // Número total de palavras
+    const segundosTotais = segundos / 100; // Tempo decorrido em segundos
+  
+    const minutos = segundosTotais / 60; // Tempo decorrido em minutos
+    const wpm = Math.round(palavra / minutos); // Cálculo do WPM
+  
+    return wpm;
+  }  
 
-// Metodo que mostra as pontuações
-function showResult() {
-    const acc = calcAcurency()
+// Imprime o resultado do metodo 'calcWpm()'
+function printWpm() {
     const wpm = calcWpm()
     const span = createSpan()
-    
+
+    span.innerHTML = `PPM: ${wpm}`
+    divWpm.classList.add('background-div-wpm')
+    divWpm.appendChild(span)
 }
 
+// Imprime quantidade de acertos
+function printHits() {
+    if (erros === 0) return     // Se não houver erros não é impresso os acertos
+    const span = createSpan()
+
+    span.textContent = `Acertos: ${acertos}`
+    divResults.appendChild(span)
+}
+
+// Imprime quantidade de erros
+function printMistakes() {
+    if (erros === 0) return     // Se não houver erros não é impresso os erros
+    const span = createSpan()
+
+    span.textContent = `Erros: ${erros}`
+    divResults.appendChild(span)
+}
+
+function restartTest() {
+    const btn = createButton()
+    btn.classList.add('btn-reset')
+    btn.textContent = 'Resetar'
+
+    divBtnReset.appendChild(btn)
+}

@@ -24,12 +24,33 @@ span {
     background: var(--primary-color);
 }
 
+/* FRASE GERADA */
 .div-paragraph {
+    text-align: center;
     margin: 5% 15% 0 15%;
     padding: 20px;
     border-radius: 20px;
 }
 
+/* RESULTADO DO WPM */
+.div-wpm {
+    color: black;
+    font-size: 1.5em;
+    margin: 35px 43%;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.background-div-wpm {
+    background: white;
+}
+
+.div-results {
+    display: grid;
+    justify-content: center;
+}
+
+/* DIGITACAO */
 .div-input {
     display: grid;
     place-items: center;
@@ -44,22 +65,26 @@ span {
     font-size: 1.2em;
     color: var(--secondary-color);
     padding: 0 10px;
-    width: 35%;
+    width: 20%;
     height: 55px;
     border-radius: 20px;
 }
 
-.div-wpm {
+/* BOTAO RESETAR */
+.div-btn-reset {
     display: grid;
     justify-content: center;
-
+    margin-top: 25px;
 }
 
+
+/* ACERTOS E ERROS */
 .acerto {
     color: rgb(109, 153, 211);
 }
 
 .erro {
+    color: white;
     background: rgb(213, 76, 76);
     border-radius: 5px;
 }

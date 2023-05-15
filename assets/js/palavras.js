@@ -25,6 +25,7 @@ export class Palavras {
             "amigo",
             "ampliar",
             "amuleto",
+            "ana",
             "anexo",
             "angulo",
             "anima",
@@ -1174,6 +1175,7 @@ export class Palavras {
             "passeio",
             "passo",
             "pastel",
+            "pata",
             "patamar",
             "patente",
             "patinar",
@@ -1945,11 +1947,11 @@ export class Palavras {
             "zuzu"]
     }
 
-    randomizarPalavras() {
+    randomizarPalavras(tamanho) {
         const palavrasEscolhidas = [];
         const copiaPalavras = this.palavras.slice();
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < tamanho; i++) {
             const indice = Math.floor(Math.random() * copiaPalavras.length);
             const palavra = copiaPalavras.splice(indice, 1)[0];
             palavrasEscolhidas.push(palavra);
