@@ -15,7 +15,7 @@ let erros = 0       // Conta os erros
 // Variavel presente no metodo 'changeColorWord(resultado)'
 let index = 0       // Recebe o indice do 'for' caso 'resultado' receber '1'
 
-const frasePrompt = window.prompt('Escolha uma frase')      // Recebe a frase
+const frasePrompt = "de suas requisições e receber notificações quando as mesmas forem aprovadas ou rejeitadas. Esses usuários podem ter"      // Recebe a frase
 
 let palavraFrase = frasePrompt.split(' ')       // Separa cada palavra da frase em um indice no array
 
@@ -59,13 +59,15 @@ function counter() {
         // Variavel contador recebe o metodo 'setInterval()' que é executado a cada 1 segundo
         let contador = setInterval(function () {
             segundos++
+            console.log(segundos)
             if (palavraFrase.length === 0) {        // Se o teste tiver terminado é chamado o metodo 'setTimeout()' que é executado instantaneamente
                 setTimeout(function () {        // O metodo 'setTimeout()' chama o metodo 'clearInterval()' que recebe como argumento o 'contador'
                     clearInterval(contador)
+                    segundos = segundos / 100
                     console.log(segundos)
                 }, 0)
             }
-        }, 1000)
+        }, 10)
     }
 }
 
@@ -171,8 +173,9 @@ function calcAcurency() {
 
 // Metodo para calcular palavras digitadas por minuto
 function calcWpm() {
-    const wpm = (frasePrompt.split(' ').length / segundos) * 60
-    return wpm.toFixed(0)
+    const palavra = frasePrompt.split(' ').length
+    const minuto = segundos / 60
+    return Math.round(palavra / minuto)
 }
 
 // Metodo que mostra as pontuações
@@ -180,7 +183,6 @@ function showResult() {
     const acc = calcAcurency()
     const wpm = calcWpm()
     const span = createSpan()
-    
     
 }
 
