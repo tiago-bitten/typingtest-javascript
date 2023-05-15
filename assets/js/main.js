@@ -16,9 +16,9 @@ let erros = 0       // Conta os erros
 // Variavel presente no metodo 'changeColorWord(resultado)'
 let index = 0       // Recebe o indice do 'for' caso 'resultado' receber '1'
 
-const frase = new Palavras()
-const palavrasRandomizadas = frase.randomizarPalavras()
-console.log(palavrasRandomizadas)
+const frase = new Palavras()        // Criando uma nova instancia de 'Palavras'
+const palavrasRandomizadas = frase.randomizarPalavras()     // Chamando o metodo 'randomizarPalavras()' a partir da instancia 'frase'
+const lengthPalavrasRandomizadas = palavrasRandomizadas.slice().length      // Atribuindo o tamanho do array a 'lengthPalavrasRandomizadas'
 
 // Evento das teclas pressionadas no documento
 document.addEventListener('keypress', function(e) {
@@ -61,7 +61,7 @@ function counter() {
         let contador = setInterval(function () {
             segundos++
             console.log(segundos)
-            if (palavraFrase.length === 0) {        // Se o teste tiver terminado é chamado o metodo 'setTimeout()' que é executado instantaneamente
+            if (palavrasRandomizadas.length === 0) {        // Se o teste tiver terminado é chamado o metodo 'setTimeout()' que é executado instantaneamente
                 setTimeout(function () {        // O metodo 'setTimeout()' chama o metodo 'clearInterval()' que recebe como argumento o 'contador'
                     clearInterval(contador)
                     segundos = segundos / 100
@@ -78,12 +78,12 @@ function createSpan() {
     return span
 }
 
-// Metodo que adiciona cada indice do array 'palavraFrase' em um <span>
+// Metodo que adiciona cada indice do array 'palavrasRandomizadas' em um <span>
 function createTextTest() {
-    for (let i in palavraFrase) {
+    for (let i in palavrasRandomizadas) {
         const span = createSpan()
         span.classList.add(`span-${i}`)
-        span.textContent = palavraFrase[i]
+        span.textContent = palavrasRandomizadas[i]
         divParagrafo.appendChild(span)
     }
 }
@@ -92,12 +92,12 @@ function createTextTest() {
 function checkWord() {
     inputPalavra.value = inputPalavra.value.trim()      // Retira os espaços vazios do input
 
-    for (let i in palavraFrase) {       // 'for' que percorre todos os indices do array 'palavraFrase'
+    for (let i in palavrasRandomizadas) {       // 'for' que percorre todos os indices do array 'palavraFrase'
         if (inputPalavra.value === '') break        // Se o valor do input for um espaço vazio a operação é interrompida
-        if (inputPalavra.value === palavraFrase[i]) {       // Verifica se o valor do input é o mesmo do indice do array
+        if (inputPalavra.value === palavrasRandomizadas[i]) {       // Verifica se o valor do input é o mesmo do indice do array
             changeColorWord(1)
             acertos++       // Adiciona +1 a 'acertos'
-            palavraFrase.splice(i, 1)       // Remove a palavra do indice atual do array 'palavraFrase'
+            palavrasRandomizadas.splice(i, 1)       // Remove a palavra do indice atual do array 'palavraFrase'
             break
 
         } else {
@@ -110,7 +110,7 @@ function checkWord() {
 
 // Metodo para mudar a cor das palavras no texto
 function changeColorWord(resultado) {
-    const tamanho = frasePrompt.split(' ').length       // 'tamanho' recebe a quantidade de palavras no texto
+    const tamanho = lengthPalavrasRandomizadas       // 'tamanho' recebe a quantidade de palavras no texto
     const span = document.querySelectorAll('span')      // 'span' recebe uma NodeList contendo todos os'<span>'
 
     if (resultado === 1) {      // 1 representa 'true'
@@ -139,7 +139,7 @@ function changeColorWord(resultado) {
 
 // Metodo para retirar todas as classes do texto
 function resetClasses() {
-    const tamanho = frasePrompt.split(' ').length       // 'tamanho' recebe a quantidade de palavras no texto
+    const tamanho = lengthPalavrasRandomizadas       // 'tamanho' recebe a quantidade de palavras no texto
     const span = document.querySelectorAll('span')      // 'span' recebe uma NodeList contendo todos os '<span>'
     
     for (let i = 0; i < tamanho; i++) {     // Percorre o texto removendo todas as classes 'acerto'
@@ -154,7 +154,7 @@ function resetClasses() {
 
 // Metodo para checar se o teste terminou
 function checkRes() {
-    if (palavraFrase.length === 0) {        // Se o array chegar a tamanho 0 é porque o teste terminou
+    if (palavrasRandomizadas.length === 0) {        // Se o array chegar a tamanho 0 é porque o teste terminou
         //palavraFrase = frasePrompt.split(' ')
         showResult()
         resetClasses()
@@ -168,15 +168,17 @@ function clsInput() {
 
 // Metodo para calcular a acuracia
 function calcAcurency() {
-    const acc = ((acertos - erros) / frasePrompt.split(' ').length) * 100
-    return acc.toFixed(2)
+    const palavra = lengthPalavrasRandomizadas      // palavra recebe a quantiade total de palavras
+    const acc = ((acertos - erros) / palavra) * 100     // Obtendo a acuracia
+    return Math.round(acc)
 }
 
 // Metodo para calcular palavras digitadas por minuto
 function calcWpm() {
-    const palavra = frasePrompt.split(' ').length
-    const minuto = segundos / 60
-    return Math.round(palavra / minuto)
+    const palavra = lengthPalavrasRandomizadas      // palavra recebe a quantiade total de palavras
+    const minuto = segundos / 60        // minutos recebe segundos divido por 60
+    const wpm = palavra / minuto     // Obtendo o WPM
+    return Math.round(wpm)
 }
 
 // Metodo que mostra as pontuações
