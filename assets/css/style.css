@@ -100,7 +100,6 @@ button:active {
 }
 
 .input-palavra {
-    font-weight: bold;
     background-color: var(--tertiary-color);
     outline: none;
     border: none;
@@ -158,6 +157,10 @@ button:active {
     margin-top: 20px;
     padding-bottom: 20px;
     border-radius: 15px;
+}
+
+.div-all-results,
+.div-paragraph {
     opacity: 0;
     animation: fade-in 0.5s ease-in-out forwards;
 }
