@@ -1,14 +1,14 @@
 import { Palavras } from "./palavras.js"
 
 const container = document.querySelector('.container')
-const inputPalavra = document.querySelector('.input-palavra')
-const divParagrafo = document.querySelector('.div-paragraph')
-const divWpm = document.querySelector('.div-wpm')
-const divResults = document.querySelector('.div-results')
-const divBtnReset = document.querySelector('.div-btn-reset')
+let divParagrafo = null
+let divWpm = null
+let divResults = null
+let inputPalavra = null
 
 // Variaveis presentes no metodo 'counter()'
 let contadorIniciado = false        // Variavel para saber se o setInterval já foi iniciado
+let testeEncerrado = false      // Encerra o teste
 let segundos        // Variavel que adiciona os segundos
 
 // Variaveis presentes nos metodos 'checkWord()' e 'getAcurency()'
@@ -18,32 +18,49 @@ let erros = 0       // Conta os erros
 // Variavel presente no metodo 'changeColorWord(resultado)'
 let index = 0       // Recebe o indice do 'for' caso 'resultado' receber '1'
 
-const tamanhoTeste = window.prompt('Quantas palavras você deseja no teste?')        // Quantidade de palavras
+let tamanhoTeste = 0       // Quantidade de palavras
 
 const frase = new Palavras()        // Criando uma nova instancia de 'Palavras'
-const palavrasRandomizadas = frase.randomizarPalavras(tamanhoTeste)     // Chamando o metodo 'randomizarPalavras()' a partir da instancia 'frase'
-const lengthPalavrasRandomizadas = palavrasRandomizadas.slice().length      // Atribuindo o tamanho do array a 'lengthPalavrasRandomizadas'
+let palavrasRandomizadas = null    // Chamando o metodo 'randomizarPalavras()' a partir da instancia 'frase'
+let lengthPalavrasRandomizadas = null      // Atribuindo o tamanho do array a 'lengthPalavrasRandomizadas'
 
 // Evento das teclas pressionadas no documento
-document.addEventListener('keypress', function(e) {
+document.addEventListener('keypress', function (e) {
     counter()       // Quando qualquer tecla pressionada o contator de tempo inicia
 
     if (e.key === ' ') {        // Se a tecla espaço pressionada executa os metodos
         try {
             checkWord()
             changeColorWord()
-            
+
             if (checkRes()) {
-                printWpm()
-                printAcc()
-                printHits()
-                printMistakes()
-                //resetClasses()
-                removeInput()
-                addBtn()
+                if (!testeEncerrado) {
+                    testeEncerrado = true
+
+                    addDiv(container, 'div-wpm', 'show')
+                    divWpm = document.querySelector('.div-wpm')
+                    printWpm()
+
+                    addDiv(container, 'div-results', 'show')
+                    divResults = document.querySelector('.div-results')
+                    printAcc()
+                    printHits()
+                    printMistakes()
+
+                    removeInput()
+
+                    addDiv(container, 'div-btn-reset', 'show')
+                    const divBtnReset = document.querySelector('.div-btn-reset')
+
+                    addBtn(divBtnReset, 'Resetar', 'btn-reset')
+
+                    divBtnReset.addEventListener('click', function () {
+                        location.reload()
+                    })
+                }
             }
 
-        } catch(e) {
+        } catch (e) {
             console.log(e.message)        // Caso ocorra alguma exceção em um dos metodos o alert informa
             console.log(e.stack)
 
@@ -53,26 +70,66 @@ document.addEventListener('keypress', function(e) {
     }
 })
 
-// Evento dos cliques do ponteiro no documento
-document.addEventListener('click', function (e) {
-    inputPalavra.focus()        // Quando ocorre o evento do clique em qualquer lugar do documento o ponteiro é automaticamente redirecionado para o 'input'
-})
 
 // Evento de carregamento da janela
-window.addEventListener('load', function() {
-    createTextTest()       // Quando a pagina é carregada executa o metodo 'createLabel()'
-    inputPalavra.focus()        // Quando a pagina é carregada o ponteiro é redirecionado para o 'input'
-})
+window.addEventListener('load', function () {
+    addDiv(container, 'div-btn-begin')
+    const divBtnBegin = document.querySelector('.div-btn-begin')
 
-divBtnReset.addEventListener('click', function() {
-    location.reload()
+    const tamanho = 3
+
+    for (let i = 1; i <= tamanho; i++) {
+        addBtn(divBtnBegin, `${i}0 PALAVRAS`, `btn-choose-words`, `btn-${i}0-words`)
+
+    }
+
+    divBtnBegin.addEventListener('click', function (e) {
+        const evento = e.target
+
+        if (evento.classList.contains('btn-10-words')) {
+            tamanhoTeste = 10
+        }
+
+        if (evento.classList.contains('btn-20-words')) {
+            tamanhoTeste = 20
+        }
+
+        if (evento.classList.contains('btn-30-words')) {
+            tamanhoTeste = 30
+        }
+
+        palavrasRandomizadas = frase.randomizarPalavras(tamanhoTeste)
+        lengthPalavrasRandomizadas = palavrasRandomizadas.slice().length
+
+        const btn = document.querySelectorAll('button')
+        divBtnBegin.remove()
+        for (let i = 0; i < tamanho; i++) {
+            btn[i].remove()
+        }
+
+        addDiv(container, 'div-paragraph', 'show')
+        divParagrafo = document.querySelector('.div-paragraph')
+        createTextTest()
+
+        addDiv(container, 'div-input')
+        const divInput = document.querySelector('.div-input')
+        addInput(divInput, 'input-palavra')
+        inputPalavra = document.querySelector('.input-palavra')
+        inputPalavra.focus()
+
+        // Evento dos cliques do ponteiro no documento
+        document.addEventListener('click', function (e) {
+            inputPalavra.focus()        // Quando ocorre o evento do clique em qualquer lugar do documento o ponteiro é automaticamente redirecionado para o 'input'
+        })
+
+    })
 })
 
 // Metodo para contar tempo do teste
 function counter() {
     if (!contadorIniciado) {        // 'contadorIniciado' é usado para saber se o metodo já foi exectuado antes
         contadorIniciado = true     // Se for a primeira vez do metodo sendo executado a variavel booleana 'contadorIniciado' recebe 'true'
-        
+
         segundos = 0        // Variavel iniciada com o valor '0'
 
         // Variavel contador recebe o metodo 'setInterval()' que é executado a cada 1 segundo
@@ -97,6 +154,16 @@ function createSpan() {
 function createButton() {
     const btn = document.createElement('button')
     return btn
+}
+
+function createInput() {
+    const input = document.createElement('input')
+    return input
+}
+
+function createDiv() {
+    const div = document.createElement('div')
+    return div
 }
 
 // Metodo que adiciona cada indice do array 'palavrasRandomizadas' em um <span>
@@ -137,7 +204,7 @@ function changeColorWord(resultado) {
     if (resultado === 1) {      // 1 representa 'true'
         for (let i = 0; i < tamanho; i++) {
             if (!span[i].classList.contains('acerto')) {
-                if (span[i].classList.contains('erro')) {      
+                if (span[i].classList.contains('erro')) {
                     span[i].classList.remove('erro')        // Se a palavra do indice atual contem a classe 'erro' a classe 'erro' é removida
                 }
                 span[i].classList.add('acerto')     // Se a palavra do indice não contem a classe 'acerto' então é adicionada a classe 'acerto'
@@ -158,26 +225,11 @@ function changeColorWord(resultado) {
     }
 }
 
-// Metodo para retirar todas as classes do texto
-function resetClasses() {
-    const tamanho = lengthPalavrasRandomizadas       // 'tamanho' recebe a quantidade de palavras no texto
-    const span = document.querySelectorAll('span')      // 'span' recebe uma NodeList contendo todos os '<span>'
-    
-    for (let i = 0; i < tamanho; i++) {     // Percorre o texto removendo todas as classes 'acerto'
-        if (span[i].classList.contains('acerto')) {
-            span[i].classList.remove('acerto')
-
-        } else {
-            throw new Error('Erro ao resetar classes')      // Se ocorrer algum erro lança uma exceção
-        }
-    }
-}
-
 // Metodo para checar se o teste terminou
 function checkRes() {
     if (palavrasRandomizadas.length === 0) {        // Se o array chegar a tamanho 0 é porque o teste terminou
         return true
-    
+
     } else {
         return false
     }
@@ -200,7 +252,7 @@ function printAcc() {
     const acc = calcAcurency()
     const span = createSpan()
 
-    span.textContent = `Acuracia: ${acc}%`
+    span.textContent = `ACURACIA: ${acc}%`
     divResults.appendChild(span)
 }
 
@@ -208,12 +260,12 @@ function printAcc() {
 function calcWpm() {
     const palavra = lengthPalavrasRandomizadas; // Número total de palavras
     const segundosTotais = segundos / 100; // Tempo decorrido em segundos
-  
+
     const minutos = segundosTotais / 60; // Tempo decorrido em minutos
     const wpm = Math.round(palavra / minutos); // Cálculo do WPM
-  
+
     return wpm;
-  }  
+}
 
 // Imprime o resultado do metodo 'calcWpm()'
 function printWpm() {
@@ -230,7 +282,7 @@ function printHits() {
     if (erros === 0) return     // Se não houver erros não é impresso os acertos
     const span = createSpan()
 
-    span.textContent = `Acertos: ${acertos}`
+    span.textContent = `ACERTOS: ${acertos}`
     divResults.appendChild(span)
 }
 
@@ -239,17 +291,31 @@ function printMistakes() {
     if (erros === 0) return     // Se não houver erros não é impresso os erros
     const span = createSpan()
 
-    span.textContent = `Erros: ${erros}`
+    span.textContent = `ERROS: ${erros}`
     divResults.appendChild(span)
 }
 
-// Adiciona o botão no documento
-function addBtn() {
-    const btn = createButton()
-    btn.classList.add('btn-reset')
-    btn.textContent = 'Resetar'
+function addDiv(dom, classe, classe2) {
+    const div = createDiv()
+    div.classList.add(classe)
+    div.classList.add(classe2)
+    dom.appendChild(div)
+}
 
-    divBtnReset.appendChild(btn)
+// Adiciona o botão no documento
+function addBtn(div, placeholder, classe, classe2) {
+    const btn = createButton()
+    btn.classList.add(classe)
+    btn.classList.add(classe2)
+    btn.textContent = placeholder
+
+    div.appendChild(btn)
+}
+
+function addInput(dom, classe) {
+    const input = createInput()
+    input.classList.add(classe)
+    dom.appendChild(input)
 }
 
 // Remove o input de digitação
