@@ -34,21 +34,21 @@ button {
     font-weight: Bold;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: rgb(91, 131, 182);
     box-shadow: 0 0 20px rgb(44, 69, 102);
     transform: scale(1.1);
-  }
-  
-  button:active {
+}
+
+button:active {
     background-color: var(--acerto);
     transition: all 0.25s;
     -webkit-transition: all 0.25s;
     box-shadow: none;
     transform: scale(0.98);
-  }
+}
 
 .container {
     padding: 10px;
@@ -105,7 +105,7 @@ button {
     border-radius: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    
+
 }
 
 /* BOTAO RESETAR */
@@ -147,7 +147,8 @@ button {
 /* ACERTOS E ERROS */
 .acerto {
     color: var(--acerto);
-    transition: color 0.2s ease-in-out;
+    transition: color 0.3s ease-in-out;
+    animation: pulse 0.5s 1;
 }
 
 .erro {
@@ -155,4 +156,38 @@ button {
     background: rgb(213, 76, 76);
     border-radius: 5px;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    animation: shake 0.3s 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-6px);
+    }
+    40% {
+        transform: translateX(6px);
+    }
+    60% {
+        transform: translateX(-6px);
+    }
+    80% {
+        transform: translateX(6px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

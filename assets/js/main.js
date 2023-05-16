@@ -216,7 +216,13 @@ function changeColorWord(resultado) {
 
     if (resultado === 2) {      // 2 representa 'false'
         for (let i = index; i < tamanho; i++) {
-            if (span[i].classList.contains('erro')) break       // Se a palavra do indice atual ja contem a classe 'erro' a operação é interrompida
+            if (span[i].classList.contains('erro')) {
+                span[i].classList.remove('erro')
+                setTimeout(() => {
+                    span[i].classList.add('erro')    
+                }, 1)
+                break
+            }       
             if (!span[i].classList.contains('erro')) {
                 span[i].classList.add('erro')       // Se a palavra do indice atual não contem classe 'erro' é adicionada a classe 'erro'
                 break
