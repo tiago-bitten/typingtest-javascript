@@ -6,6 +6,7 @@
     --tertiary-color: rgb(66, 66, 66);
 
     --acerto: rgb(109, 153, 211);
+    --erro: rgb(213, 76, 76);
 }
 
 * {
@@ -18,6 +19,14 @@ body {
     font-weight: bolder;
     color: var(--secondary-color);
     background: var(--primary-color);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.loaded {
+    opacity: 1;
+    visibility: visible;
 }
 
 span {
@@ -32,8 +41,8 @@ button {
     background-color: var(--acerto);
     color: #ffffff;
     font-weight: Bold;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
 }
 
 button:hover {
@@ -153,7 +162,7 @@ button:active {
 
 .erro {
     color: white;
-    background: rgb(213, 76, 76);
+    background: var(--erro);
     border-radius: 5px;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     animation: shake 0.3s 1;

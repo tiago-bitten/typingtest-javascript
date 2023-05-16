@@ -77,6 +77,8 @@ document.addEventListener('keydown', function(e) {
 
 // Evento de carregamento da janela
 window.addEventListener('load', function() {
+    document.body.classList.add('loaded')
+
     addDiv(container, 'div-btn-begin')
     const divBtnBegin = document.querySelector('.div-btn-begin')
 
@@ -111,7 +113,7 @@ window.addEventListener('load', function() {
             btn[i].remove()
         }
 
-        addDiv(container, 'div-paragraph', 'show')
+        addDiv(container, 'div-paragraph', 'loaded')
         divParagrafo = document.querySelector('.div-paragraph')
         createTextTest()
 
