@@ -4,6 +4,12 @@
     --primary-color: rgb(35, 35, 35);
     --secondary-color: rgb(210, 210, 210);
     --tertiary-color: rgb(66, 66, 66);
+
+    --acerto: rgb(109, 153, 211);
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -19,6 +25,31 @@ span {
     margin: 5px;
 }
 
+button {
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 100px;
+    background-color: var(--acerto);
+    color: #ffffff;
+    font-weight: Bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+  }
+  
+  button:hover {
+    background-color: rgb(91, 131, 182);
+    box-shadow: 0 0 20px rgb(44, 69, 102);
+    transform: scale(1.1);
+  }
+  
+  button:active {
+    background-color: var(--acerto);
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+  }
+
 .container {
     padding: 10px;
     background: var(--primary-color);
@@ -27,7 +58,7 @@ span {
 /* FRASE GERADA */
 .div-paragraph {
     text-align: center;
-    margin: 5% 15% 0 15%;
+    margin: 7% 15% 0 15%;
     padding: 20px;
     border-radius: 20px;
 }
@@ -36,7 +67,8 @@ span {
 .div-wpm {
     color: black;
     font-size: 1.5em;
-    margin: 35px 43%;
+    margin: 0 43%;
+    margin-bottom: 20px;
     padding: 20px;
     border-radius: 12px;
 }
@@ -47,27 +79,33 @@ span {
 
 .div-results {
     display: grid;
-    justify-content: center;
+    place-items: center;
+    font-size: 0.9em;
 }
 
 /* DIGITACAO */
 .div-input {
+    margin-top: 15px;
     display: grid;
     place-items: center;
     caret-color: transparent;
 }
 
 .input-palavra {
+    font-weight: bold;
     background-color: var(--tertiary-color);
     outline: none;
     border: none;
     cursor: default;
     font-size: 1.2em;
-    color: var(--secondary-color);
-    padding: 0 10px;
+    color: white;
+    padding: 0 15px;
     width: 20%;
-    height: 55px;
-    border-radius: 20px;
+    height: 50px;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    
 }
 
 /* BOTAO RESETAR */
@@ -81,21 +119,40 @@ span {
     padding: 15px;
     font-size: 1em;
     font-weight: 500;
-    background: rgb(109, 153, 211);
+    background: var(--acerto);
     color: white;
     border-radius: 12px;
     outline: none;
     border: none;
 }
 
+.div-btn-begin {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-choose-words {
+    padding: 15px;
+    margin-left: 20px;
+    font-size: 1em;
+    font-weight: 500;
+    background: var(--acerto);
+    color: white;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+}
 
 /* ACERTOS E ERROS */
 .acerto {
-    color: rgb(109, 153, 211);
+    color: var(--acerto);
+    transition: color 0.2s ease-in-out;
 }
 
 .erro {
     color: white;
     background: rgb(213, 76, 76);
     border-radius: 5px;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
