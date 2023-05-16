@@ -26,14 +26,14 @@ let lengthPalavrasRandomizadas = null      // Atribuindo o tamanho do array a 'l
 
 
 
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Tab') {
         location.reload()
     }
 })
 
 // Evento de carregamento da janela
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     document.body.classList.add('loaded')
 
     addDiv(container, 'div-btn-begin')
@@ -46,7 +46,7 @@ window.addEventListener('load', function() {
 
     }
 
-    divBtnBegin.addEventListener('click', function(e) {
+    divBtnBegin.addEventListener('click', function (e) {
         const evento = e.target
 
         if (evento.classList.contains('btn-10-words')) {
@@ -86,53 +86,53 @@ window.addEventListener('load', function() {
         })
 
         // Evento das teclas pressionadas no documento
-document.addEventListener('keypress', function(e) {
-    counter()       // Quando qualquer tecla pressionada o contator de tempo inicia
+        document.addEventListener('keypress', function (e) {
+            counter()       // Quando qualquer tecla pressionada o contator de tempo inicia
 
-    if (e.key === ' ' || e.key === 'Enter') {        // Se a tecla espaço pressionada executa os metodos
-        try {
-            checkWord()
-            changeColorWord()
+            if (e.key === ' ' || e.key === 'Enter') {        // Se a tecla espaço pressionada executa os metodos
+                try {
+                    checkWord()
+                    changeColorWord()
 
-            if (checkRes()) {
-                if (!testeEncerrado) {
-                    testeEncerrado = true
+                    if (checkRes()) {
+                        if (!testeEncerrado) {
+                            testeEncerrado = true
 
-                    addDiv(container, 'div-all-results')
-                    const divAllResults = document.querySelector('.div-all-results')
+                            addDiv(container, 'div-all-results')
+                            const divAllResults = document.querySelector('.div-all-results')
 
-                    addDiv(divAllResults, 'div-wpm')
-                    divWpm = document.querySelector('.div-wpm')
-                    printWpm()
+                            addDiv(divAllResults, 'div-wpm')
+                            divWpm = document.querySelector('.div-wpm')
+                            printWpm()
 
-                    addDiv(divAllResults, 'div-results')
-                    divResults = document.querySelector('.div-results')
-                    printAcc()
-                    printHits()
-                    printMistakes()
+                            addDiv(divAllResults, 'div-results')
+                            divResults = document.querySelector('.div-results')
+                            printAcc()
+                            printHits()
+                            printMistakes()
 
-                    divInput.remove()
-                    removeInput()
+                            divInput.remove()
+                            removeInput()
 
-                    addDiv(container, 'div-btn-reset')
-                    const divBtnReset = document.querySelector('.div-btn-reset')
+                            addDiv(container, 'div-btn-reset')
+                            const divBtnReset = document.querySelector('.div-btn-reset')
 
-                    addBtn(divBtnReset, 'RESETAR', 'btn-reset')
+                            addBtn(divBtnReset, 'RESETAR', 'btn-reset')
 
-                    divBtnReset.addEventListener('click', function () {
-                        location.reload()
-                    })
+                            divBtnReset.addEventListener('click', function () {
+                                location.reload()
+                            })
+                        }
+                    }
+
+                } catch (e) {
+                    alert(e)        // Caso ocorra alguma exceção em um dos metodos o alert informa
+
+                } finally {
+                    clsInput()
                 }
             }
-
-        } catch(e) {
-            alert(e)        // Caso ocorra alguma exceção em um dos metodos o alert informa
-
-        } finally {
-            clsInput()
-        }
-    }
-})
+        })
 
     })
 })
@@ -229,10 +229,10 @@ function changeColorWord(resultado) {
             if (span[i].classList.contains('erro')) {
                 span[i].classList.remove('erro')
                 setTimeout(() => {
-                    span[i].classList.add('erro')    
+                    span[i].classList.add('erro')
                 }, 1)
                 break
-            }       
+            }
             if (!span[i].classList.contains('erro')) {
                 span[i].classList.add('erro')       // Se a palavra do indice atual não contem classe 'erro' é adicionada a classe 'erro'
                 break
@@ -288,7 +288,7 @@ function printWpm() {
     const wpm = calcWpm()
     const span = createSpan()
 
-    span.innerHTML = `PPM: ${wpm}`
+    span.textContent = `PPM: ${wpm}`
     divWpm.appendChild(span)
 }
 
