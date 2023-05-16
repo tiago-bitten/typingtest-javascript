@@ -24,50 +24,7 @@ const frase = new Palavras()        // Criando uma nova instancia de 'Palavras'
 let palavrasRandomizadas = null    // Chamando o metodo 'randomizarPalavras()' a partir da instancia 'frase'
 let lengthPalavrasRandomizadas = null      // Atribuindo o tamanho do array a 'lengthPalavrasRandomizadas'
 
-// Evento das teclas pressionadas no documento
-document.addEventListener('keypress', function(e) {
-    counter()       // Quando qualquer tecla pressionada o contator de tempo inicia
 
-    if (e.key === ' ' || e.key === 'Enter') {        // Se a tecla espaço pressionada executa os metodos
-        try {
-            checkWord()
-            changeColorWord()
-
-            if (checkRes()) {
-                if (!testeEncerrado) {
-                    testeEncerrado = true
-
-                    addDiv(container, 'div-wpm', 'show')
-                    divWpm = document.querySelector('.div-wpm')
-                    printWpm()
-
-                    addDiv(container, 'div-results', 'show')
-                    divResults = document.querySelector('.div-results')
-                    printAcc()
-                    printHits()
-                    printMistakes()
-
-                    removeInput()
-
-                    addDiv(container, 'div-btn-reset', 'show')
-                    const divBtnReset = document.querySelector('.div-btn-reset')
-
-                    addBtn(divBtnReset, 'RESETAR', 'btn-reset')
-
-                    divBtnReset.addEventListener('click', function () {
-                        location.reload()
-                    })
-                }
-            }
-
-        } catch(e) {
-            alert(e)        // Caso ocorra alguma exceção em um dos metodos o alert informa
-
-        } finally {
-            clsInput()
-        }
-    }
-})
 
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Tab') {
@@ -127,6 +84,55 @@ window.addEventListener('load', function() {
         document.addEventListener('click', function (e) {
             inputPalavra.focus()        // Quando ocorre o evento do clique em qualquer lugar do documento o ponteiro é automaticamente redirecionado para o 'input'
         })
+
+        // Evento das teclas pressionadas no documento
+document.addEventListener('keypress', function(e) {
+    counter()       // Quando qualquer tecla pressionada o contator de tempo inicia
+
+    if (e.key === ' ' || e.key === 'Enter') {        // Se a tecla espaço pressionada executa os metodos
+        try {
+            checkWord()
+            changeColorWord()
+
+            if (checkRes()) {
+                if (!testeEncerrado) {
+                    testeEncerrado = true
+
+                    addDiv(container, 'div-all-results')
+                    const divAllResults = document.querySelector('.div-all-results')
+
+                    addDiv(divAllResults, 'div-wpm')
+                    divWpm = document.querySelector('.div-wpm')
+                    printWpm()
+
+                    addDiv(divAllResults, 'div-results')
+                    divResults = document.querySelector('.div-results')
+                    printAcc()
+                    printHits()
+                    printMistakes()
+
+                    divInput.remove()
+                    removeInput()
+
+                    addDiv(container, 'div-btn-reset')
+                    const divBtnReset = document.querySelector('.div-btn-reset')
+
+                    addBtn(divBtnReset, 'RESETAR', 'btn-reset')
+
+                    divBtnReset.addEventListener('click', function () {
+                        location.reload()
+                    })
+                }
+            }
+
+        } catch(e) {
+            alert(e)        // Caso ocorra alguma exceção em um dos metodos o alert informa
+
+        } finally {
+            clsInput()
+        }
+    }
+})
 
     })
 })
@@ -283,7 +289,6 @@ function printWpm() {
     const span = createSpan()
 
     span.innerHTML = `PPM: ${wpm}`
-    divWpm.classList.add('background-div-wpm')
     divWpm.appendChild(span)
 }
 

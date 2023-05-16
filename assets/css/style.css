@@ -32,6 +32,7 @@ body.loaded {
 span {
     display: inline-flex;
     margin: 5px;
+    user-select: none;
 }
 
 button {
@@ -72,18 +73,16 @@ button:active {
     border-radius: 20px;
 }
 
+
+
 /* RESULTADO DO WPM */
 .div-wpm {
     color: black;
+    background: white;
     font-size: 1.5em;
-    margin: 0 43%;
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 12px;
-}
-
-.background-div-wpm {
-    background: white;
 }
 
 .div-results {
@@ -151,6 +150,25 @@ button:active {
     border-radius: 12px;
     outline: none;
     border: none;
+}
+
+.div-all-results {
+    background: rgb(41, 41, 41);
+    margin: 0 43%;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* ACERTOS E ERROS */
