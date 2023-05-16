@@ -9,7 +9,7 @@ let inputPalavra = null
 // Variaveis presentes no metodo 'counter()'
 let contadorIniciado = false        // Variavel para saber se o setInterval já foi iniciado
 let testeEncerrado = false      // Encerra o teste
-let segundos        // Variavel que adiciona os segundos
+let segundos = 0        // Variavel iniciada com '0' segundos
 
 // Variaveis presentes nos metodos 'checkWord()' e 'getAcurency()'
 let acertos = 0     // Contas os acertos
@@ -25,10 +25,10 @@ let palavrasRandomizadas = null    // Chamando o metodo 'randomizarPalavras()' a
 let lengthPalavrasRandomizadas = null      // Atribuindo o tamanho do array a 'lengthPalavrasRandomizadas'
 
 // Evento das teclas pressionadas no documento
-document.addEventListener('keypress', function (e) {
+document.addEventListener('keypress', function(e) {
     counter()       // Quando qualquer tecla pressionada o contator de tempo inicia
 
-    if (e.key === ' ') {        // Se a tecla espaço pressionada executa os metodos
+    if (e.key === ' ' || e.key === 'Enter') {        // Se a tecla espaço pressionada executa os metodos
         try {
             checkWord()
             changeColorWord()
@@ -52,7 +52,7 @@ document.addEventListener('keypress', function (e) {
                     addDiv(container, 'div-btn-reset', 'show')
                     const divBtnReset = document.querySelector('.div-btn-reset')
 
-                    addBtn(divBtnReset, 'Resetar', 'btn-reset')
+                    addBtn(divBtnReset, 'RESETAR', 'btn-reset')
 
                     divBtnReset.addEventListener('click', function () {
                         location.reload()
@@ -60,9 +60,8 @@ document.addEventListener('keypress', function (e) {
                 }
             }
 
-        } catch (e) {
-            console.log(e.message)        // Caso ocorra alguma exceção em um dos metodos o alert informa
-            console.log(e.stack)
+        } catch(e) {
+            alert(e)        // Caso ocorra alguma exceção em um dos metodos o alert informa
 
         } finally {
             clsInput()
@@ -70,9 +69,14 @@ document.addEventListener('keypress', function (e) {
     }
 })
 
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+        location.reload()
+    }
+})
 
 // Evento de carregamento da janela
-window.addEventListener('load', function () {
+window.addEventListener('load', function() {
     addDiv(container, 'div-btn-begin')
     const divBtnBegin = document.querySelector('.div-btn-begin')
 
@@ -83,7 +87,7 @@ window.addEventListener('load', function () {
 
     }
 
-    divBtnBegin.addEventListener('click', function (e) {
+    divBtnBegin.addEventListener('click', function(e) {
         const evento = e.target
 
         if (evento.classList.contains('btn-10-words')) {
@@ -130,10 +134,8 @@ function counter() {
     if (!contadorIniciado) {        // 'contadorIniciado' é usado para saber se o metodo já foi exectuado antes
         contadorIniciado = true     // Se for a primeira vez do metodo sendo executado a variavel booleana 'contadorIniciado' recebe 'true'
 
-        segundos = 0        // Variavel iniciada com o valor '0'
-
         // Variavel contador recebe o metodo 'setInterval()' que é executado a cada 1 segundo
-        let contador = setInterval(function () {
+        let contador = setInterval(() => {
             segundos++
             if (palavrasRandomizadas.length === 0) {        // Se o teste tiver terminado é chamado o metodo 'setTimeout()' que é executado instantaneamente
                 setTimeout(() => {        // O metodo 'setTimeout()' chama o metodo 'clearInterval()' que recebe como argumento o 'contador'
@@ -328,3 +330,5 @@ function addInput(dom, classe) {
 function removeInput() {
     inputPalavra.remove()
 }
+
+// ||
