@@ -24,14 +24,6 @@ const frase = new Palavras()        // Criando uma nova instancia de 'Palavras'
 let palavrasRandomizadas = null    // Chamando o metodo 'randomizarPalavras()' a partir da instancia 'frase'
 let lengthPalavrasRandomizadas = null      // Atribuindo o tamanho do array a 'lengthPalavrasRandomizadas'
 
-
-
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Tab') {
-        location.reload()
-    }
-})
-
 // Evento de carregamento da janela
 window.addEventListener('load', function () {
     document.body.classList.add('loaded')
@@ -46,7 +38,7 @@ window.addEventListener('load', function () {
 
     }
 
-    divBtnBegin.addEventListener('click', function (e) {
+    divBtnBegin.addEventListener('click', function(e) {
         const evento = e.target
 
         if (evento.classList.contains('btn-10-words')) {
@@ -110,6 +102,7 @@ window.addEventListener('load', function () {
                             printAcc()
                             printHits()
                             printMistakes()
+                            printTime()
 
                             divInput.remove()
                             removeInput()
@@ -307,6 +300,18 @@ function printMistakes() {
     const span = createSpan()
 
     span.textContent = `ERROS: ${erros}`
+    divResults.appendChild(span)
+}
+
+function printTime() {
+    const span = createSpan()
+    let tempo = Math.round(segundos / 100)
+    
+    if (tempo < 10) {
+        tempo = `0${tempo}`
+    }
+    
+    span.textContent = `00:00:${tempo}`
     divResults.appendChild(span)
 }
 
