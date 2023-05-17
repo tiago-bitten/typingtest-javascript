@@ -160,7 +160,8 @@ button:active {
 }
 
 .div-all-results,
-.div-paragraph {
+.div-paragraph,
+.div-input {
     opacity: 0;
     animation: fade-in 0.5s ease-in-out forwards;
 }
