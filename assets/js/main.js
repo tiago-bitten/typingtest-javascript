@@ -304,16 +304,26 @@ function printMistakes() {
 }
 
 function printTime() {
+    segundos = Math.round(segundos / 100)
     const span = createSpan()
-    let tempo = Math.round(segundos / 100)
+    const data = new Date(null);
+    data.setSeconds(segundos);
+  
+    const horas = data.getUTCHours().toString().padStart(2, '0');
+    const minutos = data.getUTCMinutes().toString().padStart(2, '0');
+    const segundosPrint = data.getUTCSeconds().toString().padStart(2, '0');
+  
+    const formatoHora = horas + ':' + minutos + ':' + segundosPrint;
     
-    if (tempo < 10) {
-        tempo = `0${tempo}`
-    }
-    
-    span.textContent = `00:00:${tempo}`
+    span.textContent = formatoHora
     divResults.appendChild(span)
-}
+  }
+  
+  // Exemplo de uso:
+  var totalSegundos = 3665;
+  var formatoHora = converterParaFormatoHora(totalSegundos);
+  console.log(formatoHora); // Output: 01:01:05
+  
 
 function addDiv(dom, classe, classe2) {
     const div = createDiv()
