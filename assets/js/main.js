@@ -1,4 +1,4 @@
-import { Palavras } from "./palavras.js"
+import Palavras from "./palavras.js"
 
 const container = document.querySelector('.container')
 let divParagrafo = null
