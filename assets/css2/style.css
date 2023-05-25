@@ -25,15 +25,6 @@ body {
     color: var(--words-not-pressed);
 }
 
-.correct {
-    color: var(--word-correct-pressed-steelblue);
-}
-
-.incorrect {
-    color: var(--background-default-color);
-    background: var(--word-background-incorrect-pressed-red);
-    border-radius: 5px;
-}
 
 section {
     display: flex;
