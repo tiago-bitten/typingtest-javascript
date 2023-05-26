@@ -1,35 +1,32 @@
 import { UIHomePage } from "./UI_home_page.js";
+import { TesteDigitacao } from "../teste_digitacao_page/teste_digitacao.js"
 
 export class HomePage {
     constructor() {
         this.ui = new UIHomePage()
-        this.divHomeButtons = this.ui.divHomeButtons
+        this.teste = new TesteDigitacao()
 
-        this.tamanhoTeste = 0
+        this.divHomeButtons = this.ui.divHomeButtons
     }
 
     eventoClickHome() {
         this.divHomeButtons.addEventListener('click', e => {
             const event = e.target
 
-
             if (event.classList.contains('button-grande')) {
-                this.tamanhoTeste = 30
+                this.teste.setTamanhoTeste = 30
 
             } else if (event.classList.contains('button-medio')) {
-                this.tamanhoTeste = 20
+                this.teste.setTamanhoTeste = 20
 
             } else if (event.classList.contains('button-pequeno')) {
-                this.tamanhoTeste = 10
+                this.teste.setTamanhoTeste = 10
 
             } else {
                 throw new Error('ERRO HOME PAGE SELEÇÃO DE BUTOES')
             }
 
-            if (event.tagName === 'BUTTON') {
-                window.location.href = '../teste.html'
-            }
-
+            window.location.href = '../teste_digitacao_page.html'
         })
     }
 }
