@@ -1,5 +1,10 @@
 import { HomePage } from "./home_page/home_page.js";
 
-const home = new HomePage()
+const homePage = new HomePage()
 
-home.eventoClickHome()
+try {
+    homePage.eventoClickHome()
+
+} catch(e) {
+    console.log(e)
+}
