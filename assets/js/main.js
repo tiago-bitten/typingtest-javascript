@@ -1,10 +1,5 @@
-import Palavras from "./palavras"
+import { HomePage } from "./home_page/home_page.js";
 
-ui.divhomebuttons.addEventListener('click', e => {
-    const evento = e.target
+const home = new HomePage()
 
-    if (evento.classList.contains('button-pequeno')) {
-        console.log('ola, mundo')
-    }
-})
-
+home.eventoClickHome()

@@ -1,4 +1,4 @@
-export default class Palavras {
+export class Palavras {
     constructor() {
         // Lista de palavras para serem randomizadas
         this.palavras = [
