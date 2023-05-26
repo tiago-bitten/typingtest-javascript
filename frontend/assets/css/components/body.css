@@ -1,0 +1,6 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2em;
+    background: var(--background-default-color);
+    color: var(--words-not-pressed);
+}
