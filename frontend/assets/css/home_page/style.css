@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-@import url('./components/reset.css');
-@import url('./components/button.css');
-@import url('./components/section.css');
-@import url('./components/body.css');
+@import url('../components/reset.css');
+@import url('../components/button.css');
+@import url('../components/section.css');
+@import url('../components/body.css');
 
 :root {
     --background-default-color: #f5f5f5;
@@ -21,4 +21,22 @@
     --word-background-incorrect-pressed-red: #ff3b1f;
     --word-background-incorrect-pressed-siena: #ff8247;
     --word-background-incorrect-pressed-midnightblue: #191970;
+}
+
+.div-home-label {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 4.5%;
+}
+
+.div-home-buttons {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 5%;
+}
+
+button {
+    margin-left: 1%;
 }
