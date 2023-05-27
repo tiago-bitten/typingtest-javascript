@@ -1,4 +1,4 @@
-import { TesteDigitacao } from "./teste_digitacao.js";
+import { TesteDigitacao } from "./texto_digitacao.js";
 import { EventosInput } from "./eventos_input.js";
 
 const testeDigitacao = new TesteDigitacao()

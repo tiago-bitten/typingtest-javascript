@@ -36,3 +36,18 @@
 
     margin-top: 5%;
 }
+
+.palavra-correta {
+    color: var(--word-correct-pressed-steelblue);
+}
+
+.palavra-incorreta {
+    color: white;
+    background-color: var(--word-background-incorrect-pressed-red);
+
+    border-radius: 5px;
+}
+
+.underline-palavra-atual {
+
+}

@@ -1,12 +1,12 @@
-import { UITesteDigitacao } from "./UI_teste_digitacao.js";
+import { UITesteDigitacao } from "./UI_teste_digitacao.js"
 
 export class EventosInput {
   constructor(testeDigitacao) {
-    this.ui = new UITesteDigitacao();
-    this.testeDigitacao = testeDigitacao;
+    this.ui = new UITesteDigitacao()
+    this.testeDigitacao = testeDigitacao
 
-    this.divInputTeste = this.ui.divInputTeste;
-    this.inputTeste = this.ui.inputTeste;
+    this.divInputTeste = this.ui.divInputTeste
+    this.inputTeste = this.ui.inputTeste
   }
 
   eventoApontarCursorInput() {
@@ -22,25 +22,27 @@ export class EventosInput {
   eventoChecarPalavra() {
     this.divInputTeste.addEventListener('keypress', e => {
       if (e.key === ' ' || e.key === 'Enter') {
-        this.checarPalavra();
+        this.checarPalavra()
         this.ui.limparInput()
       }
     });
   }
 
   checarPalavra() {
-    const inputTeste = this.inputTeste.value.trim();
+    const inputTeste = this.inputTeste.value.trim()
 
-    if (inputTeste === '') return;
+    if (inputTeste === '') return
     if (inputTeste === this.testeDigitacao.palavrasRandomizadas[0]) {
-      console.log('certo');
 
-      this.testeDigitacao.palavrasRandomizadas.splice(0, 1);
+      this.testeDigitacao.validarPalavra(true)
 
-      return;
+      this.testeDigitacao.palavrasRandomizadas.splice(0, 1)
+
+      return
 
     } else {
-        console.log('erro');
+        this.testeDigitacao.validarPalavra(false)
+        return
     }
   }
 }
