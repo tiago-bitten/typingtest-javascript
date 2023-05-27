@@ -12,7 +12,7 @@
 
     --words-not-pressed: #9e9e9e;
 
-    --word-correct-pressed-slategray: #708090; 
+    --word-correct-pressed-slategray: #708090;
     --word-correct-pressed-steelblue: #4682b4;
     --word-correct-pressed-thistle: #d8bfd8;
     --word-correct-pressed-royaleblue: #4169e1;
@@ -45,21 +45,34 @@
 .underline-palavra-atual {
     text-decoration: underline;
     text-decoration-color: var(--underline-word-pantone);
+    animation: fade-in 0.3s ease-in-out;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .palavra-correta {
     color: var(--word-correct-pressed-steelblue);
     transition: color 0.3s ease-in-out;
-    animation: pulse 0.5s 1;
+    animation: pulse 0.7s 1;
 }
 
 @keyframes pulse {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.02);
     }
+
     100% {
         transform: scale(1);
     }
@@ -69,6 +82,6 @@
     color: white;
     background-color: var(--word-background-incorrect-pressed-red);
 
-    border-radius:10px;
+    border-radius: 10px;
     text-decoration: none;
 }
