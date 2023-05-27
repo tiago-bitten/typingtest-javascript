@@ -22,6 +22,8 @@
     --word-background-incorrect-pressed-red: #ff3b1f;
     --word-background-incorrect-pressed-siena: #ff8247;
     --word-background-incorrect-pressed-midnightblue: #191970;
+
+    --underline-word-pantone: #808080;
 }
 
 .div-texto-teste {
@@ -37,6 +39,11 @@
     margin-top: 5%;
 }
 
+.underline-palavra-atual {
+    text-decoration: underline;
+    text-decoration-color: var(--underline-word-pantone);
+}
+
 .palavra-correta {
     color: var(--word-correct-pressed-steelblue);
 }
@@ -45,9 +52,6 @@
     color: white;
     background-color: var(--word-background-incorrect-pressed-red);
 
-    border-radius: 5px;
-}
-
-.underline-palavra-atual {
-
+    border-radius:10px;
+    text-decoration: none;
 }

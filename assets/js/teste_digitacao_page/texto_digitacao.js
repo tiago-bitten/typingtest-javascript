@@ -24,17 +24,28 @@ export class TesteDigitacao {
         }
     }
 
-    underLinePalavraAtual() {
+    underlinePalavraAtual() {
         const span = document.querySelectorAll('span')
-        
+
+        for (let i = 0; i < span.length; i++) {
+
+            if (!span[i].classList.contains('underline-palavra-atual') && 
+                !span[i].classList.contains('palavra-correta')) {
+
+                span[i].classList.add('underline-palavra-atual')
+                return
+            }
+        }
+
     }
-    
+
     validarPalavra(resultado) {
         const span = document.querySelectorAll('span')
-        
+
         if (resultado) {
             for (let i = 0; i < span.length; i++) {
                 if (!span[i].classList.contains('palavra-correta')) {
+                    span[i].classList.remove('underline-palavra-atual')
                     span[i].classList.remove('palavra-incorreta')
                     span[i].classList.add('palavra-correta')
 
@@ -43,7 +54,7 @@ export class TesteDigitacao {
                     return
                 }
             }
-            
+
         } else if (!resultado) {
             for (let i = this.index; i < span.length; i++) {
                 if (span[i].classList.contains('palavra-incorreta')) return

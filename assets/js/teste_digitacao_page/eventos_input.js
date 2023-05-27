@@ -12,6 +12,8 @@ export class EventosInput {
   eventoApontarCursorInput() {
     window.document.addEventListener('DOMContentLoaded', e => {
       this.inputTeste.focus()
+
+      this.testeDigitacao.underlinePalavraAtual()
     })
 
     document.addEventListener('click', e => {
@@ -33,9 +35,8 @@ export class EventosInput {
 
     if (inputTeste === '') return
     if (inputTeste === this.testeDigitacao.palavrasRandomizadas[0]) {
-
+      this.testeDigitacao.underlinePalavraAtual()
       this.testeDigitacao.validarPalavra(true)
-
       this.testeDigitacao.palavrasRandomizadas.splice(0, 1)
 
       return
