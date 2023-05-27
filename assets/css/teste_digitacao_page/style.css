@@ -5,6 +5,7 @@
 @import url('../components/section.css');
 @import url('../components/body.css');
 @import url('../components/span.css');
+@import url('../components/input.css');
 
 :root {
     --background-default-color: #f5f5f5;
@@ -24,6 +25,8 @@
     --word-background-incorrect-pressed-midnightblue: #191970;
 
     --underline-word-pantone: #808080;
+
+    --input-word-pantone: #545454;
 }
 
 .div-texto-teste {
