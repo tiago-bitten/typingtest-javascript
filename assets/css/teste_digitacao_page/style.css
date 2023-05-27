@@ -49,6 +49,20 @@
 
 .palavra-correta {
     color: var(--word-correct-pressed-steelblue);
+    transition: color 0.3s ease-in-out;
+    animation: pulse 0.5s 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .palavra-incorreta {
