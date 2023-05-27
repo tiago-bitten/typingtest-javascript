@@ -66,6 +66,15 @@ export class TesteDigitacao {
         }
     }
 
+    checarTerminoTeste() {
+        if (this.palavrasRandomizadas.length === 0) {
+            alert('Teste terminou')
+        
+        } else {
+            console.log('prossiga')
+        }
+    }
+
     set setTamanhoTeste(valor) {
         this.tamanhoTeste = valor
     }
