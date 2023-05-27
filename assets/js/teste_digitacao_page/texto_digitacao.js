@@ -1,11 +1,8 @@
-import { Palavras } from "./palavras.js";
-import { UITesteDigitacao } from "./UI_teste_digitacao.js";
-
 export class TesteDigitacao {
-    constructor(homePage) {
-        this.palavra = new Palavras()
-        this.ui = new UITesteDigitacao()
-        this.homePage = homePage
+    constructor(pontuacao, palavras, ui) {
+        this.palavra = palavras
+        this.ui = ui
+        this.pontuacao = pontuacao
 
         this.palavrasRandomizadas = this.palavra.randomizarPalavras(10)
 
@@ -65,12 +62,13 @@ export class TesteDigitacao {
         }
     }
 
-    checarTerminoTeste() {
+    eventoChecarTerminoTeste() {
         document.addEventListener('keypress', e => {
             if (e.key === ' ' || e.key === 'Enter') {
 
                 if (this.palavrasRandomizadas.length === 0) {
-                    alert('Teste Encerrado')
+                    alert(`Teste encerrado Acertos: ${this.pontuacao.getAcertos}
+                           Erros: ${this.pontuacao.getErros}`)
                 
                 } else {
                     console.log(`faltam ${this.palavrasRandomizadas.length} palavras`)

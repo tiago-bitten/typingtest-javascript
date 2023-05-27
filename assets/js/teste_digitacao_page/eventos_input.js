@@ -1,9 +1,8 @@
-import { UITesteDigitacao } from "./UI_teste_digitacao.js"
-
 export class EventosInput {
-  constructor(testeDigitacao) {
-    this.ui = new UITesteDigitacao()
+  constructor(testeDigitacao, pontuacao, ui) {
+    this.ui = ui
     this.testeDigitacao = testeDigitacao
+    this.pontuacao = pontuacao
 
     this.divInputTeste = this.ui.divInputTeste
     this.inputTeste = this.ui.inputTeste
@@ -37,12 +36,16 @@ export class EventosInput {
     if (inputTeste === this.testeDigitacao.palavrasRandomizadas[0]) {
       this.testeDigitacao.underlinePalavraAtual()
       this.testeDigitacao.validarPalavra(true)
+
+      this.pontuacao.acertos++
+
       this.testeDigitacao.palavrasRandomizadas.splice(0, 1)
 
       return
 
     } else {
         this.testeDigitacao.validarPalavra(false)
+        this.pontuacao.erros++
         return
     }
   }

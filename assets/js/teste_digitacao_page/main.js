@@ -1,13 +1,17 @@
+import { UITesteDigitacao } from "./UI_teste_digitacao.js"
 import { TesteDigitacao } from "./texto_digitacao.js";
 import { EventosInput } from "./eventos_input.js";
-import { HomePage } from "../home_page/home_page.js";
+import { Pontuacao } from "./pontuacao.js"
+import { Palavras } from "./palavras.js";
 
-const homePage = new HomePage()
-const testeDigitacao = new TesteDigitacao(homePage)
-const eventosInput = new EventosInput(testeDigitacao)
+const ui = new UITesteDigitacao()
+const pontuacao = new Pontuacao()
+const palavras = new Palavras()
+const testeDigitacao = new TesteDigitacao(pontuacao, palavras, ui)
+const eventosInput = new EventosInput(testeDigitacao, pontuacao, ui)
 
 
 testeDigitacao.criarTeste()
-eventosInput.eventoChecarPalavra()
 eventosInput.eventoApontarCursorInput()
-testeDigitacao.checarTerminoTeste()
+eventosInput.eventoChecarPalavra()
+testeDigitacao.eventoChecarTerminoTeste()
