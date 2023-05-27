@@ -1,8 +1,9 @@
 import { TesteDigitacao } from "./teste_digitacao.js";
-import { UITesteDigitacao } from "./UI_teste_digitacao.js";
-
+import { EventosInput } from "./eventos_input.js";
 
 const testeDigitacao = new TesteDigitacao()
-const ui = new UITesteDigitacao()
+const eventosInput = new EventosInput(testeDigitacao)
 
-testeDigitacao.createTest()
+testeDigitacao.criarTeste()
+eventosInput.eventoChecarPalavra()
+eventosInput.eventoApontarCursorInput()
