@@ -2,13 +2,12 @@ import { Palavras } from "./palavras.js";
 import { UITesteDigitacao } from "./UI_teste_digitacao.js";
 
 export class TesteDigitacao {
-    constructor() {
+    constructor(homePage) {
         this.palavra = new Palavras()
         this.ui = new UITesteDigitacao()
+        this.homePage = homePage
 
-        this.tamanhoTeste = 10
-
-        this.palavrasRandomizadas = this.palavra.randomizarPalavras(this.tamanhoTeste)
+        this.palavrasRandomizadas = this.palavra.randomizarPalavras(10)
 
         this.divTextoTeste = this.ui.divTextoTeste
 
@@ -20,7 +19,7 @@ export class TesteDigitacao {
         for (let i in this.palavrasRandomizadas) {
             const span = this.ui.createSpan()
             span.textContent = this.palavrasRandomizadas[i]
-            this.divTextoTeste.appendChild(span)
+            this.divTextoTeste.appendChild(span)  
         }
     }
 
@@ -67,15 +66,16 @@ export class TesteDigitacao {
     }
 
     checarTerminoTeste() {
-        if (this.palavrasRandomizadas.length === 0) {
-            alert('Teste terminou')
-        
-        } else {
-            console.log('prossiga')
-        }
-    }
+        document.addEventListener('keypress', e => {
+            if (e.key === ' ' || e.key === 'Enter') {
 
-    set setTamanhoTeste(valor) {
-        this.tamanhoTeste = valor
+                if (this.palavrasRandomizadas.length === 0) {
+                    alert('Teste Encerrado')
+                
+                } else {
+                    console.log(`faltam ${this.palavrasRandomizadas.length} palavras`)
+                }
+            }
+        })
     }
 }
