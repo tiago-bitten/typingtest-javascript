@@ -71,7 +71,7 @@ export class TesteDigitacao {
 
                 if (this.palavrasRandomizadas.length === 0) {
                     this.tempo.pararContagem()
-                    alert(`Teste encerrado Acertos: ${this.pontuacao.getAcertos}
+                    alert(`Teste encerrado ACC: ${this.pontuacao.getACC}%
                            Erros: ${this.pontuacao.getErros}
                            Segundos: ${this.tempo.getSegundos}
                            PPM: ${this.pontuacao.getPPM}`)

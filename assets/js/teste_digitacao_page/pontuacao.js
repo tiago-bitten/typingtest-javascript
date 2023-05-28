@@ -7,6 +7,7 @@ export class Pontuacao {
         this.erros = 0
 
         this.ppm = 0
+        this.acc = 0
     }
 
     get getPPM() {
@@ -17,7 +18,13 @@ export class Pontuacao {
         return this.ppm
     }
 
-    get getAcertos() {
+    get getACC() {
+        this.acc = Math.round(((this.acertos - this.erros) / this.testeDigitacao.tamanhoTeste) * 100)
+        
+        return this.acc
+    }
+
+    getAcertos() {
         return this.acertos
     }
 
