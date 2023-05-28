@@ -71,7 +71,8 @@ export class TesteDigitacao {
                     this.tempo.pararContagem()
                     alert(`Teste encerrado Acertos: ${this.pontuacao.getAcertos}
                            Erros: ${this.pontuacao.getErros}
-                           Segundos: ${this.tempo.getSegundos}`)
+                           Segundos: ${this.tempo.getSegundos}
+                           PPM: ${this.pontuacao.getPPM}`)
 
                 } else {
                     console.log(`faltam ${this.palavrasRandomizadas.length} palavras`)

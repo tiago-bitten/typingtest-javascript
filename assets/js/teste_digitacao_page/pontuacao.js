@@ -1,7 +1,20 @@
 export class Pontuacao {
-    constructor() {
+    constructor(tempo, testeDigitacao) {
+        this.tempo = tempo
+        this.testeDigitacao = testeDigitacao
+        
         this.acertos = 0
         this.erros = 0
+
+        this.ppm = 0
+    }
+
+    get getPPM() {
+        const minutos = this.tempo.getSegundos / 60
+
+        this.ppm = Math.round(this.testeDigitacao.palavrasRandomizadas.length / minutos)
+        
+        return this.ppm
     }
 
     get getAcertos() {
