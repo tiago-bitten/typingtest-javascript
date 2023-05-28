@@ -32,21 +32,19 @@ export class EventosInput {
 
   checarPalavra() {
     const inputTeste = this.inputTeste.value.trim()
+    const palavraCorreta = this.testeDigitacao.palavrasRandomizadas[0]
 
     if (inputTeste === '') return
-    if (inputTeste === this.testeDigitacao.palavrasRandomizadas[0]) {
+
+    if (inputTeste === palavraCorreta) {
       this.testeDigitacao.validarPalavra(true)
-
       this.pontuacao.acertos++
-
       this.testeDigitacao.palavrasRandomizadas.splice(0, 1)
-
-      return
-
+      
     } else {
-        this.testeDigitacao.validarPalavra(false)
-        this.pontuacao.erros++
-        return
+      this.testeDigitacao.validarPalavra(false)
+      this.pontuacao.erros++
     }
   }
+
 }
