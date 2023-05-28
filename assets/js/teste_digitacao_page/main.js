@@ -3,15 +3,18 @@ import { TesteDigitacao } from "./texto_digitacao.js";
 import { EventosInput } from "./eventos_input.js";
 import { Pontuacao } from "./pontuacao.js"
 import { Palavras } from "./palavras.js";
+import { Tempo } from "./tempo.js";
 
 const ui = new UITesteDigitacao()
 const pontuacao = new Pontuacao()
 const palavras = new Palavras()
-const testeDigitacao = new TesteDigitacao(pontuacao, palavras, ui)
-const eventosInput = new EventosInput(testeDigitacao, pontuacao, ui)
+const tempo = new Tempo()
+const testeDigitacao = new TesteDigitacao(pontuacao, palavras, tempo, ui)
+const eventosInput = new EventosInput(testeDigitacao, pontuacao, tempo, ui)
 
 
 testeDigitacao.criarTeste()
 eventosInput.eventoApontarCursorInput()
 eventosInput.eventoChecarPalavra()
+tempo.eventoIniciarContagem()
 testeDigitacao.eventoChecarTerminoTeste()

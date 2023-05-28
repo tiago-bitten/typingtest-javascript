@@ -1,12 +1,14 @@
 export class EventosInput {
-  constructor(testeDigitacao, pontuacao, ui) {
-    this.ui = ui
+  constructor(testeDigitacao, pontuacao, tempo, ui) {
     this.testeDigitacao = testeDigitacao
     this.pontuacao = pontuacao
+    this.tempo = tempo
+    this.ui = ui
 
     this.divInputTeste = this.ui.divInputTeste
     this.inputTeste = this.ui.inputTeste
   }
+
 
   eventoApontarCursorInput() {
     window.document.addEventListener('DOMContentLoaded', e => {

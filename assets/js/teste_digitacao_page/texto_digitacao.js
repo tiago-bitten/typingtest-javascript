@@ -1,10 +1,11 @@
 export class TesteDigitacao {
-    constructor(pontuacao, palavras, ui) {
-        this.palavra = palavras
-        this.ui = ui
+    constructor(pontuacao, palavras, tempo, ui) {
         this.pontuacao = pontuacao
+        this.palavra = palavras
+        this.tempo = tempo
+        this.ui = ui
 
-        this.palavrasRandomizadas = this.palavra.randomizarPalavras(10)
+        this.palavrasRandomizadas = this.palavra.randomizarPalavras(5)
 
         this.divTextoTeste = this.ui.divTextoTeste
 
@@ -49,7 +50,7 @@ export class TesteDigitacao {
 
                     return
                 }
-            }
+            }       
 
         } else if (!resultado) {
             for (let i = this.index; i < span.length; i++) {
@@ -67,9 +68,11 @@ export class TesteDigitacao {
             if (e.key === ' ' || e.key === 'Enter') {
 
                 if (this.palavrasRandomizadas.length === 0) {
+                    this.tempo.pararContagem()
                     alert(`Teste encerrado Acertos: ${this.pontuacao.getAcertos}
-                           Erros: ${this.pontuacao.getErros}`)
-                
+                           Erros: ${this.pontuacao.getErros}
+                           Segundos: ${this.tempo.getSegundos}`)
+
                 } else {
                     console.log(`faltam ${this.palavrasRandomizadas.length} palavras`)
                 }
