@@ -17,7 +17,7 @@ testeDigitacao.pontuacao = pontuacao
 
 
 testeDigitacao.criarTeste()
-eventosInput.eventoApontarCursorInput()
+eventosInput.eventoCarregarTeste()
 eventosInput.eventoChecarPalavra()
 tempo.eventoIniciarContagem()
 testeDigitacao.eventoChecarTerminoTeste()

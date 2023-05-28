@@ -19,25 +19,23 @@ export class TesteDigitacao {
         for (let i in this.palavrasRandomizadas) {
             const span = this.ui.criarSpan()
             span.textContent = this.palavrasRandomizadas[i]
-            this.divTextoTeste.appendChild(span)  
+            this.divTextoTeste.appendChild(span)
         }
     }
 
-    underlinePalavraAtual() {
-        const span = document.querySelectorAll('span')
-
-        for (let i = 0; i < span.length; i++) {
-
-            if (!span[i].classList.contains('underline-palavra-atual') && 
-                !span[i].classList.contains('palavra-correta')) {
-
-                span[i].classList.add('underline-palavra-atual')
-                
-                return
-            }
+    underlinePalavra() {
+        const spans = document.querySelectorAll('span')
+        
+        for (let i = 0; i < spans.length; i++) {
+          const span = spans[i]
+      
+          if (!span.classList.contains('underline-palavra-atual') && span.classList.length === 0) {
+            span.classList.add('underline-palavra-atual')
+            return // Interrompe o loop após aplicar a classe
+          }
         }
-
-    }
+      }
+      
 
     validarPalavra(resultado) {
         const span = document.querySelectorAll('span')
@@ -45,6 +43,9 @@ export class TesteDigitacao {
         if (resultado) {
             for (let i = 0; i < span.length; i++) {
                 if (!span[i].classList.contains('palavra-correta')) {
+
+                    this.underlinePalavra()
+
                     span[i].classList.remove('underline-palavra-atual')
                     span[i].classList.remove('palavra-incorreta')
                     span[i].classList.add('palavra-correta')
@@ -53,13 +54,14 @@ export class TesteDigitacao {
 
                     return
                 }
-            }       
+            }
 
         } else if (!resultado) {
             for (let i = this.index; i < span.length; i++) {
                 if (!span[i].classList.contains('palavra-incorreta')) {
+                    span[i].classList.remove('underline-palavra-atual')
                     span[i].classList.add('palavra-incorreta')
-                    
+
                     return
 
                 } else return
@@ -74,9 +76,6 @@ export class TesteDigitacao {
                 if (this.palavrasRandomizadas.length === 0) {
                     this.tempo.pararContagem()
                     this.pontuacao.mostrarPontuacao()
-
-                } else {
-                    console.log(`faltam ${this.palavrasRandomizadas.length} palavras`)
                 }
             }
         })
