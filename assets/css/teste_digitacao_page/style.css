@@ -35,6 +35,7 @@
   margin-top: 10%;
 
   padding: 10px;
+
 }
 
 .div-input-teste {
@@ -44,18 +45,23 @@
   margin-top: 5%;
 }
 
-.underline-palavra-atual {
-  text-decoration: underline var(--underline-word-pantone);
+.div-texto-teste,
+.div-input-teste {
+  animation: fade-in 0.3s ease-in-out forwards;
 }
 
 @keyframes fade-in {
   0% {
-    opacity: 0.8;
+    opacity: 0;
   }
 
   100% {
     opacity: 1;
   }
+}
+
+.underline-palavra-atual {
+  text-decoration: underline var(--underline-word-pantone);
 }
 
 .palavra-correta {
