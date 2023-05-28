@@ -5,7 +5,9 @@ export class TesteDigitacao {
         this.tempo = tempo
         this.ui = ui
 
-        this.palavrasRandomizadas = this.palavra.randomizarPalavras(5)
+        this.tamanhoTeste = 5
+
+        this.palavrasRandomizadas = this.palavra.randomizarPalavras(this.tamanhoTeste)
 
         this.divTextoTeste = this.ui.divTextoTeste
 

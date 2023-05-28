@@ -12,7 +12,7 @@ export class Pontuacao {
     get getPPM() {
         const minutos = this.tempo.getSegundos / 60
 
-        this.ppm = Math.round(this.testeDigitacao.palavrasRandomizadas.length / minutos)
+        this.ppm = Math.round(this.testeDigitacao.tamanhoTeste / minutos)
         
         return this.ppm
     }
