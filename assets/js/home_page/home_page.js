@@ -1,38 +1,27 @@
 export class HomePage {
-    constructor(ui) {
+    constructor(testeDigitacao, ui) {
+        this.testeDigitacao = testeDigitacao
         this.ui = ui
 
         this.divHomeButtons = this.ui.divHomeButtons
-
-        this.tamanhoTeste = 0
     }
 
     eventoClickHome() {
-        this.divHomeButtons.addEventListener('click', e => {
-            const event = e.target
+        const tamanhoTesteMap = {
+            'button-grande': 30,
+            'button-medio': 20,
+            'button-pequeno': 10,
+        };
 
-            if (event.classList.contains('button-grande')) {
-                this.setTamanhoTeste = 30
+        this.divHomeButtons.addEventListener('click', ({ target }) => {
+            const tamanhoTeste = tamanhoTesteMap[target.classList.value]
 
-            } else if (event.classList.contains('button-medio')) {
-                this.setTamanhoTeste = 20
-
-            } else if (event.classList.contains('button-pequeno')) {
-                this.setTamanhoTeste = 10
-
+            if (tamanhoTeste) {
+                this.testeDigitacao.setTamanhoTeste = tamanhoTeste;
+                window.location.href = '../teste_digitacao_page.html'
             } else {
-                throw new Error('ERRO HOME PAGE SELEÇÃO DE BUTOES')
+                throw new Error('ERRO HOME PAGE SELEÇÃO DE BOTÕES')
             }
-
-            window.location.href = '../teste_digitacao_page.html'
         })
     }
-
-    get getTamanhoTeste() {
-        return this.tamanhoTeste
-    }
-
-    set setTamanhoTeste(valor) {
-        this.tamanhoTeste = valor
-    }
-}
+}  
