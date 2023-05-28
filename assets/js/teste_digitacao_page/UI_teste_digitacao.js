@@ -1,22 +1,31 @@
 export class UITesteDigitacao {
     constructor() {
+        this.container = document.querySelector('.container')
         this.divTextoTeste = document.querySelector('.div-texto-teste')
         this.divInputTeste = document.querySelector('.div-input-teste')
 
         this.inputTeste = document.querySelector('.input-teste')
     }
 
-    criarSpan() {
+    criarP() {
+        const p = document.createElement('p')
+        return p
+    }
+
+    criarSpan(classe) {
         const span = document.createElement('span')
+        span.classList.add(classe)
+
         return span
     }
 
-    criarDiv(classe1, classe2, classe3) {
+    criarDiv(dom, classe1, classe2) {
         const div = document.createElement('div')
         div.classList.add(classe1)
         div.classList.add(classe2)
-        div.classList.add(classe3)
-        
+
+        dom.appendChild(div)
+
         return div
     }
 

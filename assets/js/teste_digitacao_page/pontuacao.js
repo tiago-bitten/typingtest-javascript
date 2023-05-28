@@ -12,19 +12,24 @@ export class Pontuacao {
     }
 
     mostrarPontuacao() {
-        const pontuacaoDiv = this.ui.criarDiv('pontuacao', 'modal')
+        const pontuacaoDiv = this.ui.criarDiv(this.ui.container, 'pontuacao', 'modal')
+        const pontuacaoContentDiv = this.ui.criarDiv(pontuacaoDiv, 'modal-content')
+        const span = this.ui.criarSpan('close')
+        const p = this.ui.criarP()
 
-        pontuacaoDiv.innerHTML = `
-          <div class="modal-content">
-            <span class="close" onclick="this.parentElement.parentElement.remove()">&times;</span>
-            <p>PPM: ${this.getPPM}</p>
-            <p>ACC: ${this.getACC}%</p>
-          </div>
-        `;  
+        span.innerHTML = '&times;'
+        span.onclick = () => pontuacaoDiv.remove();
 
-        document.body.appendChild(pontuacaoDiv);
-        pontuacaoDiv.style.display = "block";
-    }
+        p.innerHTML = `PPM: ${this.getPPM} </br>
+                       ACC: ${this.getACC}%`
+        
+
+        pontuacaoContentDiv.appendChild(span)
+        pontuacaoContentDiv.appendChild(p)
+      
+        pontuacaoDiv.style.display = "block"
+      }
+      
 
     get getPPM() {
         const minutos = this.tempo.getSegundos / 60
