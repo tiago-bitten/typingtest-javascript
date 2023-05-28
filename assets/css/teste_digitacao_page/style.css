@@ -172,12 +172,4 @@
   display: block; 
 
   margin-top: 15px;
-
-  background: white;
-  color: var(--word-correct-pressed-steelblue);
-}
-
-.botao-reniciar-teste:hover {
- background: var(--word-correct-pressed-steelblue);
- color: white;
 }

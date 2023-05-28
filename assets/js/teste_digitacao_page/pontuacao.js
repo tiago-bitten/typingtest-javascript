@@ -20,6 +20,7 @@ export class Pontuacao {
 
         span.innerHTML = '&times;' // Define o conteúdo do <span> como '&times;' para exibir um símbolo de fechar
         span.onclick = () => pontuacaoDiv.remove(); // Adiciona um evento de clique para remover a div de pontuação ao clicar no <span>
+        botao.onclick = () => window.location.reload()
 
         p.innerHTML = `PPM: ${this.getPPM} </br>
                        ACC: ${this.getACC}%` // Define o conteúdo do <p> como a pontuação atual (PPM e ACC)
