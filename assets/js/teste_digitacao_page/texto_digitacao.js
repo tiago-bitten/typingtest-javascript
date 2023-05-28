@@ -16,12 +16,15 @@ export class TesteDigitacao {
 
     // Criação do texto para o teste
     criarTeste() {
-        for (let i in this.palavrasRandomizadas) {
+        const spans = this.palavrasRandomizadas.map(palavra => {
             const span = this.ui.criarSpan()
-            span.textContent = this.palavrasRandomizadas[i]
-            this.divTextoTeste.appendChild(span)
-        }
+            span.textContent = palavra
+            return span
+        })
+
+        this.divTextoTeste.append(...spans)
     }
+
 
     underlinePalavra() {
         const spans = document.querySelectorAll('span')
@@ -70,11 +73,13 @@ export class TesteDigitacao {
 
     eventoChecarTerminoTeste() {
         document.addEventListener('keypress', e => {
-          if (e.key === ' ' || e.key === 'Enter' && this.palavrasRandomizadas.length === 0) {
-            this.tempo.pararContagem()
-            this.pontuacao.mostrarPontuacao()
-          }
+            if (e.key === ' ' || e.key === 'Enter') {
+
+                if (this.palavrasRandomizadas.length === 0) {
+                    this.tempo.pararContagem()
+                    this.pontuacao.mostrarPontuacao()
+                }
+            }
         })
-      }
-      
+    }
 }
