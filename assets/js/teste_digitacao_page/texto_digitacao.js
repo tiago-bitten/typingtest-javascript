@@ -70,13 +70,11 @@ export class TesteDigitacao {
 
     eventoChecarTerminoTeste() {
         document.addEventListener('keypress', e => {
-            if (e.key === ' ' || e.key === 'Enter') {
-
-                if (this.palavrasRandomizadas.length === 0) {
-                    this.tempo.pararContagem()
-                    this.pontuacao.mostrarPontuacao()
-                }
-            }
+          if (e.key === ' ' || e.key === 'Enter' && this.palavrasRandomizadas.length === 0) {
+            this.tempo.pararContagem()
+            this.pontuacao.mostrarPontuacao()
+          }
         })
-    }
+      }
+      
 }
