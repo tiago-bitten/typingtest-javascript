@@ -45,7 +45,6 @@
 .underline-palavra-atual {
     text-decoration: underline;
     text-decoration-color: var(--underline-word-pantone);
-    animation: fade-in 0.3s ease-in-out;
 }
 
 @keyframes fade-in {
@@ -81,34 +80,65 @@
 .palavra-incorreta {
     color: white;
     background-color: var(--word-background-incorrect-pressed-red);
-
+  
     border-radius: 10px;
     text-decoration: none;
-
+  
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     animation: shake 0.3s 1;
-}
-
-@keyframes shake {
+    animation-name: shake;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+  }
+  
+  @keyframes shake {
     0% {
-        transform: translateX(0);
+      transform: translateX(0);
     }
     20% {
-        transform: translateX(-6px);
+      transform: translateX(-6px);
     }
     40% {
-        transform: translateX(6px);
+      transform: translateX(6px);
     }
     60% {
-        transform: translateX(-6px);
+      transform: translateX(-6px);
     }
     80% {
-        transform: translateX(6px);
+      transform: translateX(6px);
     }
     100% {
-        transform: translateX(0);
+      transform: translateX(0);
     }
-}
+  }
+  
+  @-webkit-keyframes shake {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+    20% {
+      -webkit-transform: translateX(-6px);
+      transform: translateX(-6px);
+    }
+    40% {
+      -webkit-transform: translateX(6px);
+      transform: translateX(6px);
+    }
+    60% {
+      -webkit-transform: translateX(-6px);
+      transform: translateX(-6px);
+    }
+    80% {
+      -webkit-transform: translateX(6px);
+      transform: translateX(6px);
+    }
+    100% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+  
 
 .pontuacao {
     display: none;

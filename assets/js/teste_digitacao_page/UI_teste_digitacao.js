@@ -14,9 +14,14 @@ export class UITesteDigitacao {
 
     criarSpan(classe) {
         const span = document.createElement('span') // Cria um elemento <span>
-        span.classList.add(classe) // Adiciona a classe fornecida ao elemento <span>
+        
+        if (classe) {
+            span.classList.add(classe) // Adiciona a classe fornecida ao elemento <span>
+            return span // Retorna o elemento <span>
 
-        return span // Retorna o elemento <span>
+        } else {
+            return span // Retorna o elemento <span>
+        }
     }
 
     criarDiv(dom, classe1, classe2) {
