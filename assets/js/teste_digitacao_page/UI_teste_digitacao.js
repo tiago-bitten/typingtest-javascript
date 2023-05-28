@@ -26,16 +26,33 @@ export class UITesteDigitacao {
 
     criarDiv(dom, classe1, classe2) {
         const div = document.createElement('div') // Cria um elemento <div>
-        div.classList.add(classe1) // Adiciona a classe1 fornecida ao elemento <div>
-        div.classList.add(classe2) // Adiciona a classe2 fornecida ao elemento <div>
+        
+        if (dom) {
+            dom.appendChild(div)
+        }
 
-        dom.appendChild(div) // Adiciona o elemento <div> ao elemento fornecido (dom)
+        if (classe1) {
+            div.classList.add(classe1)
+        }
+        
+        if (classe2) {
+            div.classList.add(classe2)
+        }
 
         return div // Retorna o elemento <div>
     }
 
-    criarBotao() {
+    criarBotao(classe, valor) {
         const botao = document.createElement('button') // Cria um elemento <button>
+        
+        if (classe) {
+            botao.classList.add(classe)
+        }
+
+        if (valor) {
+            botao.textContent = valor
+        }
+        
         return botao // Retorna o elemento <button>
     }
 

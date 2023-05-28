@@ -40,11 +40,10 @@ export class EventosInput {
       this.testeDigitacao.validarPalavra(true)
       this.pontuacao.acertos++
       this.testeDigitacao.palavrasRandomizadas.splice(0, 1)
-      
+
     } else {
       this.testeDigitacao.validarPalavra(false)
       this.pontuacao.erros++
     }
   }
-
 }

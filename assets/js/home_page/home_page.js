@@ -19,6 +19,7 @@ export class HomePage {
             if (tamanhoTeste) {
                 this.testeDigitacao.setTamanhoTeste = tamanhoTeste;
                 window.location.href = '../teste_digitacao_page.html'
+                
             } else {
                 throw new Error('ERRO HOME PAGE SELEÇÃO DE BOTÕES')
             }

@@ -16,16 +16,19 @@ export class Pontuacao {
         const pontuacaoContentDiv = this.ui.criarDiv(pontuacaoDiv, 'modal-content') // Cria uma div para o conteúdo da pontuação
         const span = this.ui.criarSpan('close') // Cria um elemento <span> para fechar a pontuação
         const p = this.ui.criarP() // Cria um elemento <p> para exibir a pontuação
+        const botao = this.ui.criarBotao('botao-reniciar-teste', 'Reniciar')
 
         span.innerHTML = '&times;' // Define o conteúdo do <span> como '&times;' para exibir um símbolo de fechar
         span.onclick = () => pontuacaoDiv.remove(); // Adiciona um evento de clique para remover a div de pontuação ao clicar no <span>
 
         p.innerHTML = `PPM: ${this.getPPM} </br>
                        ACC: ${this.getACC}%` // Define o conteúdo do <p> como a pontuação atual (PPM e ACC)
-
+        
         pontuacaoContentDiv.appendChild(span) // Adiciona o <span> à div de conteúdo da pontuação
         pontuacaoContentDiv.appendChild(p) // Adiciona o <p> à div de conteúdo da pontuação
-      
+        pontuacaoContentDiv.appendChild(botao)
+
+
         pontuacaoDiv.style.display = "block" // Define o estilo da div de pontuação para exibi-la na tela
     }
       
