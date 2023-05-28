@@ -25,49 +25,48 @@ export class TesteDigitacao {
 
     underlinePalavra() {
         const spans = document.querySelectorAll('span')
-        
+
         for (let i = 0; i < spans.length; i++) {
-          const span = spans[i]
-      
-          if (!span.classList.contains('underline-palavra-atual') && span.classList.length === 0) {
-            span.classList.add('underline-palavra-atual')
-            return // Interrompe o loop após aplicar a classe
-          }
+            const span = spans[i]
+
+            if (!span.classList.contains('underline-palavra-atual') && span.classList.length === 0) {
+                span.classList.add('underline-palavra-atual')
+                return // Interrompe o loop após aplicar a classe
+            }
         }
-      }
-      
+    }
+
 
     validarPalavra(resultado) {
         const span = document.querySelectorAll('span')
 
         if (resultado) {
-            for (let i = 0; i < span.length; i++) {
-                if (!span[i].classList.contains('palavra-correta')) {
+            for (let i = this.index; i < span.length; i++) {
+                const currentSpan = span[i]
 
+                if (!currentSpan.classList.contains('palavra-correta')) {
                     this.underlinePalavra()
 
-                    span[i].classList.remove('underline-palavra-atual')
-                    span[i].classList.remove('palavra-incorreta')
-                    span[i].classList.add('palavra-correta')
+                    currentSpan.classList.remove('underline-palavra-atual', 'palavra-incorreta')
+                    currentSpan.classList.add('palavra-correta')
 
                     this.index = i + 1
 
                     return
                 }
             }
+        } else {
+            const currentSpan = span[this.index]
 
-        } else if (!resultado) {
-            for (let i = this.index; i < span.length; i++) {
-                if (!span[i].classList.contains('palavra-incorreta')) {
-                    span[i].classList.remove('underline-palavra-atual')
-                    span[i].classList.add('palavra-incorreta')
-
-                    return
-
-                } else return
+            if (currentSpan && !currentSpan.classList.contains('palavra-incorreta')) {
+                currentSpan.classList.remove('underline-palavra-atual')
+                currentSpan.classList.add('palavra-incorreta')
             }
+
+            return
         }
     }
+
 
     eventoChecarTerminoTeste() {
         document.addEventListener('keypress', e => {
