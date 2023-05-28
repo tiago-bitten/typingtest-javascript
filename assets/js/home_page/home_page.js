@@ -1,8 +1,6 @@
-import { UIHomePage } from "./UI_home_page.js";
-
 export class HomePage {
-    constructor() {
-        this.ui = new UIHomePage()
+    constructor(ui) {
+        this.ui = ui
 
         this.divHomeButtons = this.ui.divHomeButtons
 
