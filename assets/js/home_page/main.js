@@ -5,9 +5,4 @@ const ui = new UIHomePage()
 const homePage = new HomePage(ui)
 
 
-try {
-    homePage.eventoClickHome()
-
-} catch(e) {
-    console.log(e)
-}
+homePage.eventoClickHome()

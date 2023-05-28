@@ -10,7 +10,7 @@ const palavras = new Palavras()
 const tempo = new Tempo()
 const testeDigitacao = new TesteDigitacao(null, palavras, tempo, ui)
 const eventosInput = new EventosInput(testeDigitacao, null, tempo, ui)
-const pontuacao = new Pontuacao(tempo, testeDigitacao)
+const pontuacao = new Pontuacao(tempo, testeDigitacao, ui)
 
 eventosInput.pontuacao = pontuacao
 testeDigitacao.pontuacao = pontuacao

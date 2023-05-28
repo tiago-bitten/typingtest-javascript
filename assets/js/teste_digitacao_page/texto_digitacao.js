@@ -17,7 +17,7 @@ export class TesteDigitacao {
     // Criação do texto para o teste
     criarTeste() {
         for (let i in this.palavrasRandomizadas) {
-            const span = this.ui.createSpan()
+            const span = this.ui.criarSpan()
             span.textContent = this.palavrasRandomizadas[i]
             this.divTextoTeste.appendChild(span)  
         }
@@ -32,6 +32,7 @@ export class TesteDigitacao {
                 !span[i].classList.contains('palavra-correta')) {
 
                 span[i].classList.add('underline-palavra-atual')
+                
                 return
             }
         }
@@ -56,11 +57,12 @@ export class TesteDigitacao {
 
         } else if (!resultado) {
             for (let i = this.index; i < span.length; i++) {
-                if (span[i].classList.contains('palavra-incorreta')) return
                 if (!span[i].classList.contains('palavra-incorreta')) {
                     span[i].classList.add('palavra-incorreta')
+                    
                     return
-                }
+
+                } else return
             }
         }
     }
@@ -71,10 +73,7 @@ export class TesteDigitacao {
 
                 if (this.palavrasRandomizadas.length === 0) {
                     this.tempo.pararContagem()
-                    alert(`Teste encerrado ACC: ${this.pontuacao.getACC}%
-                           Erros: ${this.pontuacao.getErros}
-                           Segundos: ${this.tempo.getSegundos}
-                           PPM: ${this.pontuacao.getPPM}`)
+                    this.pontuacao.mostrarPontuacao()
 
                 } else {
                     console.log(`faltam ${this.palavrasRandomizadas.length} palavras`)
