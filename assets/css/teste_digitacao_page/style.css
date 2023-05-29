@@ -29,153 +29,161 @@
   --input-word-pantone: #545454;
 }
 
+/* Estilos para a div que contém o texto do teste */
 .div-texto-teste {
   text-align: center;
-
-  margin-top: 10%;
-
-  padding: 10px;
-
+  margin-top: 10%; /* Margem superior de 10% */
+  padding: 10px; /* Espaçamento interno de 10px */
 }
 
+/* Estilos para a div que contém a entrada de texto do teste */
 .div-input-teste {
   display: flex;
   justify-content: center;
-
-  margin-top: 5%;
+  margin-top: 5%; /* Margem superior de 5% */
 }
 
+/* Aplica a animação fade-in nas divs .div-texto-teste e .div-input-teste */
 .div-texto-teste,
 .div-input-teste {
   animation: fade-in 0.3s ease-in-out forwards;
 }
 
+/* Animação fade-in */
 @keyframes fade-in {
   0% {
-    opacity: 0;
+    opacity: 0; /* Opacidade inicial de 0 */
   }
 
   100% {
-    opacity: 1;
+    opacity: 1; /* Opacidade final de 1 */
   }
 }
 
+/* Estilos para a palavra atual com sublinhado */
 .underline-palavra-atual {
-  text-decoration: underline var(--underline-word-pantone);
+  text-decoration: underline var(--underline-word-pantone); /* Sublinhado com a cor especificada */
 }
 
+/* Estilos para palavras corretas */
 .palavra-correta {
-  color: var(--word-correct-pressed-steelblue);
-  transition: color 0.3s ease-in-out;
-  animation: pulse 0.7s 1;
+  color: var(--word-correct-pressed-steelblue); /* Cor das palavras corretas quando pressionadas */
+  transition: color 0.3s ease-in-out; /* Transição suave da cor */
+  animation: pulse 0.7s 1; /* Animação de pulso */
 }
 
+/* Animação de pulso */
 @keyframes pulse {
   0% {
-    transform: scale(1);
+    transform: scale(1); /* Escala inicial de 1 */
   }
 
   50% {
-    transform: scale(1.02);
+    transform: scale(1.02); /* Escala de 1.02 */
   }
 
   100% {
-    transform: scale(1);
+    transform: scale(1); /* Escala final de 1 */
   }
 }
 
+/* Estilos para palavras incorretas */
 .palavra-incorreta {
-  color: white;
-  background-color: var(--word-background-incorrect-pressed-red);
+  color: white; /* Cor do texto das palavras incorretas */
+  background-color: var(--word-background-incorrect-pressed-red); /* Cor de fundo das palavras incorretas quando pressionadas */
 
-  border-radius: 10px;
+  border-radius: 10px; /* Raio de borda de 10px */
 
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-  animation: shake 0.3s 1;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Transição suave da cor do texto e cor de fundo */
+  animation: shake 0.3s 1; /* Animação de tremor */
 }
 
+/* Animação de tremor */
 @keyframes shake {
   0% {
-    transform: translateX(0);
+    transform: translateX(0); /* Sem deslocamento inicial */
   }
 
   20% {
-    transform: translateX(-6px);
+    transform: translateX(-6px); /* Deslocamento para a esquerda */
   }
 
   40% {
-    transform: translateX(6px);
+    transform: translateX(6px); /* Deslocamento para a direita */
   }
 
   60% {
-    transform: translateX(-6px);
+    transform: translateX(-6px); /* Deslocamento para a esquerda */
   }
 
   80% {
-    transform: translateX(6px);
+    transform: translateX(6px); /* Deslocamento para a direita */
   }
 
   100% {
-    transform: translateX(0);
+    transform: translateX(0); /* Sem deslocamento final */
   }
 }
 
+/* Estilos para a pontuação */
 .pontuacao {
-  display: none;
-  position: fixed;
-
-  z-index: 1;
+  display: none; /* Oculta inicialmente */
+  position: fixed; /* Posição fixa */
+  z-index: 1; /* Camada de sobreposição */
   left: 0;
   top: 0;
-
   width: 100%;
   height: 100%;
 
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: var(--input-word-pantone);
+  overflow: auto; /* Rolagem quando necessário */
+  background-color: rgba(0, 0, 0, 0.4); /* Cor de fundo com transparência */
+  color: var(--input-word-pantone); /* Cor do texto da pontuação */
 
-  animation: fade-in 0.3s ease-in-out forwards;
+  animation: fade-in 0.3s ease-in-out forwards; /* Animação de fade-in */
 }
 
+/* Animação fade-in */
 @keyframes fade-in {
   0% {
-    opacity: 0;
+    opacity: 0; /* Opacidade inicial de 0 */
   }
 
   100% {
-    opacity: 1;
+    opacity: 1; /* Opacidade final de 1 */
   }
 }
 
+/* Estilos para o conteúdo do modal */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #fefefe; /* Cor de fundo do modal */
 
-  margin: 15% auto;
+  margin: 15% auto; /* Margens superior e inferior de 15%, centralizando horizontalmente */
   padding: 20px;
 
-  border: 1px solid #888;
-  width: 15%;
+  border: 1px solid #888; /* Borda de 1px sólida */
+  width: 15%; /* Largura de 15% */
 }
 
+/* Estilos para o botão de fechar o modal */
 .close {
-  color: #aaa;
-  float: right;
+  color: #aaa; /* Cor do ícone de fechar */
+  float: right; /* Alinhar à direita */
   font-size: 28px;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: var(--word-correct-pressed-steelblue);
+  color: var(--word-correct-pressed-steelblue); /* Cor do ícone de fechar ao passar o mouse ou focar */
   text-decoration: none;
   cursor: pointer;
 }
 
+/* Estilos para o botão de reiniciar o teste */
 .botao-reniciar-teste {
-  margin-left: auto;
-  margin-right: auto;
-  display: block; 
+  margin-left: auto; /* Margem esquerda automática */
+  margin-right: auto; /* Margem direita automática */
+  display: block; /* Exibir como bloco */
 
-  margin-top: 15px;
+  margin-top: 15px; /* Margem superior de 15px */
 }
