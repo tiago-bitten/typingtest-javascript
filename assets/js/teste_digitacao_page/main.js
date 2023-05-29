@@ -1,9 +1,10 @@
-import { UITesteDigitacao } from "./UI_teste_digitacao.js"
-import { TesteDigitacao } from "./texto_digitacao.js";
-import { EventosInput } from "./eventos_input.js";
-import { Pontuacao } from "./pontuacao.js"
-import { Palavras } from "./palavras.js";
-import { Tempo } from "./tempo.js";
+import { UITesteDigitacao } from "./UI_teste_digitacao.js" // Importa a classe UITesteDigitacao do arquivo "UI_teste_digitacao.js"
+import { TesteDigitacao } from "./texto_digitacao.js" // Importa a classe TesteDigitacao do arquivo "texto_digitacao.js"
+import { EventosInput } from "./eventos_input.js" // Importa a classe EventosInput do arquivo "eventos_input.js"
+import { Pontuacao } from "./pontuacao.js" // Importa a classe Pontuacao do arquivo "pontuacao.js"
+import { Palavras } from "./palavras.js" // Importa a classe Palavras do arquivo "palavras.js"
+import { Tempo } from "./tempo.js" // Importa a classe Tempo do arquivo "tempo.js"
+
 
 const ui = new UITesteDigitacao() // Cria uma instância da classe UITesteDigitacao
 const palavras = new Palavras() // Cria uma instância da classe Palavras
