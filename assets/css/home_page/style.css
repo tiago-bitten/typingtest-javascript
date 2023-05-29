@@ -23,20 +23,21 @@
     --word-background-incorrect-pressed-midnightblue: #191970;
 }
 
+/* Estilos para a div que contém o rótulo da página inicial */
 .div-home-label {
     display: flex;
     justify-content: center;
-
-    margin-top: 4.5%;
+    margin-top: 4.5%; /* Margem superior de 4.5% */
 }
 
+/* Estilos para a div que contém os botões da página inicial */
 .div-home-buttons {
     display: flex;
     justify-content: center;
-
-    margin-top: 5%;
+    margin-top: 5%; /* Margem superior de 5% */
 }
 
+/* Estilos para os botões */
 button {
-    margin-left: 1%;
+    margin-left: 1%; /* Margem esquerda de 1% */
 }
