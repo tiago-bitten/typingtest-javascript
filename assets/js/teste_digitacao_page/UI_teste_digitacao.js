@@ -17,26 +17,24 @@ export class UITesteDigitacao {
         
         if (classe) {
             span.classList.add(classe) // Adiciona a classe fornecida ao elemento <span>
-            return span // Retorna o elemento <span>
-
-        } else {
-            return span // Retorna o elemento <span>
         }
+        
+        return span // Retorna o elemento <span>
     }
 
     criarDiv(dom, classe1, classe2) {
         const div = document.createElement('div') // Cria um elemento <div>
         
         if (dom) {
-            dom.appendChild(div)
+            dom.appendChild(div) // Adiciona o elemento <div> como filho do elemento fornecido em 'dom'
         }
 
         if (classe1) {
-            div.classList.add(classe1)
+            div.classList.add(classe1) // Adiciona a classe1 fornecida ao elemento <div>
         }
         
         if (classe2) {
-            div.classList.add(classe2)
+            div.classList.add(classe2) // Adiciona a classe2 fornecida ao elemento <div>
         }
 
         return div // Retorna o elemento <div>
@@ -46,11 +44,11 @@ export class UITesteDigitacao {
         const botao = document.createElement('button') // Cria um elemento <button>
         
         if (classe) {
-            botao.classList.add(classe)
+            botao.classList.add(classe) // Adiciona a classe fornecida ao elemento <button>
         }
 
         if (valor) {
-            botao.textContent = valor
+            botao.textContent = valor // Define o texto do botão como o valor fornecido
         }
         
         return botao // Retorna o elemento <button>
