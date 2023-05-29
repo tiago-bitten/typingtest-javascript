@@ -22,7 +22,7 @@ export class Pontuacao {
         span.onclick = () => pontuacaoDiv.remove() // Adiciona um evento de clique para remover a div de pontuação ao clicar no <span>
         botao.onclick = () => window.location.reload() // Adiciona um evento de clique para recarregar a página ao clicar no botão "Reiniciar"
 
-        p.innerHTML = `PPM: ${this.getPPM} </br> ACC: ${this.getACC}%` // Define o conteúdo do <p> como a pontuação atual (PPM e ACC)
+        p.innerHTML = `PPM: ${this.getPPM} </br> ACC: ${this.getACC}% </br> Segundos: ${this.tempo.getSegundos}` // Define o conteúdo do <p> como a pontuação atual (PPM, ACC e Segundos)
         
         pontuacaoContentDiv.appendChild(span) // Adiciona o <span> à div de conteúdo da pontuação
         pontuacaoContentDiv.appendChild(p) // Adiciona o <p> à div de conteúdo da pontuação
