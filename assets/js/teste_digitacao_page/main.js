@@ -5,19 +5,18 @@ import { Pontuacao } from "./pontuacao.js"
 import { Palavras } from "./palavras.js";
 import { Tempo } from "./tempo.js";
 
-const ui = new UITesteDigitacao()
-const palavras = new Palavras()
-const tempo = new Tempo()
-const testeDigitacao = new TesteDigitacao(null, palavras, tempo, ui)
-const eventosInput = new EventosInput(testeDigitacao, null, tempo, ui)
-const pontuacao = new Pontuacao(tempo, testeDigitacao, ui)
+const ui = new UITesteDigitacao() // Cria uma instância da classe UITesteDigitacao
+const palavras = new Palavras() // Cria uma instância da classe Palavras
+const tempo = new Tempo() // Cria uma instância da classe Tempo
+const testeDigitacao = new TesteDigitacao(null, palavras, tempo, ui) // Cria uma instância da classe TesteDigitacao, passando null para o parâmetro pontuacao
+const eventosInput = new EventosInput(testeDigitacao, null, tempo, ui) // Cria uma instância da classe EventosInput, passando as instâncias relevantes
+const pontuacao = new Pontuacao(tempo, testeDigitacao, ui) // Cria uma instância da classe Pontuacao, passando as instâncias relevantes
 
-eventosInput.pontuacao = pontuacao
-testeDigitacao.pontuacao = pontuacao
+eventosInput.pontuacao = pontuacao // Define a instância de pontuacao na propriedade pontuacao de eventosInput
+testeDigitacao.pontuacao = pontuacao // Define a instância de pontuacao na propriedade pontuacao de testeDigitacao
 
-
-testeDigitacao.criarTeste()
-eventosInput.eventoCarregarTeste()
-eventosInput.eventoChecarPalavra()
-tempo.eventoIniciarContagem()
-testeDigitacao.eventoChecarTerminoTeste()
+testeDigitacao.criarTeste() // Chama o método criarTeste() da instância testeDigitacao
+eventosInput.eventoCarregarTeste() // Chama o método eventoCarregarTeste() da instância eventosInput
+eventosInput.eventoChecarPalavra() // Chama o método eventoChecarPalavra() da instância eventosInput
+tempo.eventoIniciarContagem() // Chama o método eventoIniciarContagem() da instância tempo
+testeDigitacao.eventoChecarTerminoTeste() // Chama o método eventoChecarTerminoTeste() da instância testeDigitacao
