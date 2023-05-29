@@ -5,7 +5,7 @@ export class TesteDigitacao {
         this.tempo = tempo // Objeto de tempo
         this.ui = ui // Objeto de interface do usuário
 
-        this.tamanhoTeste = 5 // Tamanho do teste de digitação
+        this.tamanhoTeste = 15 // Tamanho do teste de digitação
 
         this.palavrasRandomizadas = this.palavra.randomizarPalavras(this.tamanhoTeste) // Array de palavras randomizadas para o teste
 
@@ -55,16 +55,25 @@ export class TesteDigitacao {
                     return
                 }
             }
+            
         } else {
-            const currentSpan = spans[this.index]
 
-            if (currentSpan && !currentSpan.classList.contains('palavra-incorreta')) {
-                currentSpan.classList.remove('underline-palavra-atual')
-                currentSpan.classList.add('palavra-incorreta') // Marca a palavra como incorreta
+            const currentSpan = spans[this.index] // Obtém a referência para o elemento de span atual
+            currentSpan.classList.remove('underline-palavra-atual') // Remove a classe 'underline-palavra-atual' do elemento atual
+
+            if (currentSpan && currentSpan.classList.contains('palavra-incorreta')) { // Verifica se o elemento atual possui a classe 'palavra-incorreta'
+                currentSpan.classList.remove('palavra-incorreta') // Remove a classe 'palavra-incorreta' do elemento atual
+
+                setTimeout(() => {
+                    currentSpan.classList.add('palavra-incorreta') // Após um pequeno intervalo de tempo, adiciona novamente a classe 'palavra-incorreta' ao elemento atual
+                }, 10)
+            } else {
+                currentSpan.classList.add('palavra-incorreta') // Caso o elemento atual não tenha a classe 'palavra-incorreta', adiciona-a normalmente
             }
 
-            return
+            return // Retorna
         }
+
     }
 
     eventoChecarTerminoTeste() {

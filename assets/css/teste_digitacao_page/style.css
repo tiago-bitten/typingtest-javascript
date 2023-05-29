@@ -32,6 +32,7 @@
 /* Estilos para a div que contém o texto do teste */
 .div-texto-teste {
   text-align: center;
+  margin: 0 15% 0 15%;  /* Margem direta e esquerda de 15% */
   margin-top: 10%; /* Margem superior de 10% */
   padding: 10px; /* Espaçamento interno de 10px */
 }
