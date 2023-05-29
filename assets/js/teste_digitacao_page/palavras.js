@@ -1948,15 +1948,17 @@ export class Palavras {
     }
 
     randomizarPalavras(tamanho) {
-        const palavrasEscolhidas = [];
-        const copiaPalavras = this.palavras.slice();
+        const palavrasEscolhidas = []; // Array para armazenar as palavras escolhidas aleatoriamente
+        const copiaPalavras = this.palavras.slice(); // Cria uma cópia do array de palavras
 
         for (let i = 0; i < tamanho; i++) {
-            const indice = Math.floor(Math.random() * copiaPalavras.length);
-            const palavra = copiaPalavras.splice(indice, 1)[0];
-            palavrasEscolhidas.push(palavra);
+            const indice = Math.floor(Math.random() * copiaPalavras.length); // Gera um índice aleatório com base no tamanho atual do array de palavras
+            const palavra = copiaPalavras.splice(indice, 1)[0]; // Remove e retorna a palavra correspondente ao índice aleatório do array copiado
+            palavrasEscolhidas.push(palavra); // Adiciona a palavra escolhida ao array de palavras escolhidas
         }
 
-        return palavrasEscolhidas;
+        return palavrasEscolhidas; // Retorna o array de palavras escolhidas aleatoriamente
     }
 }
+
+
